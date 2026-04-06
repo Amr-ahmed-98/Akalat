@@ -47,7 +47,7 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-:root {
+/* :root {
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
@@ -80,6 +80,38 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.708 0 0);
+} */
+
+:root {
+    --background: #F1F5F9;           /* Sub-background - page/frame bg */
+    --foreground: #202124;           /* Main text */
+    --card: #ffffff;                 /* Card background (white) */
+    --card-foreground: #202124;      /* Main text */
+    --popover: #ffffff;
+    --popover-foreground: #202124;
+    --primary: #FB5A2A;              /* ← Main color - buttons, CTAs */
+    --primary-foreground: #ffffff;
+    --secondary: #011937;            /* ← Secondary - dark navy badges/bg */
+    --secondary-foreground: #ffffff;
+    --muted: #F1F5F9;               /* Sub-background */
+    --muted-foreground: #20212460;   /* Helper text (with opacity) */
+    --accent: #F9896B;               /* ← Sub-main color - badges, soft highlights */
+    --accent-foreground: #ffffff;
+    --destructive: oklch(0.577 0.245 27.325); /* keep as is */
+    --border: #E5E7EB;              /* ← Border color */
+    --input: #E5E7EB;               /* ← Input border */
+    --ring: #FB5A2A;                /* Focus ring = main color */
+    /* chart colors — keep or ignore */
+    --radius: 0.625rem;
+    /* sidebar — update to match */
+    --sidebar: #ffffff;
+    --sidebar-foreground: #202124;
+    --sidebar-primary: #FB5A2A;
+    --sidebar-primary-foreground: #ffffff;
+    --sidebar-accent: #F1F5F9;
+    --sidebar-accent-foreground: #202124;
+    --sidebar-border: #E5E7EB;
+    --sidebar-ring: #FB5A2A;
 }
 
 .dark {

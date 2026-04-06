@@ -11,13 +11,13 @@
     "prefix": ""
   },
   "iconLibrary": "lucide",
-  "rtl": false,
+  "rtl": true,
   "aliases": {
-    "components": "@/components",
-    "utils": "@/lib/utils",
-    "ui": "@/components/ui",
-    "lib": "@/lib",
-    "hooks": "@/hooks"
+    "components": "@/src/shared",
+    "ui": "@/src/shared/ui",
+    "lib": "@/src/shared/lib",
+    "utils": "@/src/shared/lib/utils",
+    "hooks": "@/src/shared/hooks"
   },
   "menuColor": "default",
   "menuAccent": "subtle",
