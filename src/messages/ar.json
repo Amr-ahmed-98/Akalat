@@ -1,3 +1,215 @@
 {
-  "HomePage": { "title": "مرحبا بالعالم!" }
+  "HomePage": {
+    "title": "مرحبا بالعالم!"
+  },
+  "Auth": {
+    "layout": {
+      "backHome": "العودة للرئيسية",
+      "privacyNote": "بياناتك خاصة وتُستخدم فقط لتحسين تجربتك.",
+      "imageAlt": "شيف يحضّر الطعام داخل المطبخ",
+      "heroBadge": "تحليل ذكي للمكونات وطهي مخصص لك",
+      "heroTitle": "حوّل مطبخك إلى تجربة طهي ذكية.",
+      "heroDescription": "تحليل للوجبات بالذكاء الاصطناعي، وخطط ووصفات تناسب ذوقك وأدواتك فعلاً.",
+      "topCardLabel": "تحليل المكونات",
+      "topCardTitle": "خضروات طازجة واقتراحات وصفات ذكية",
+      "bottomCardLabel": "القيمة الغذائية المتوقعة",
+      "protein": "بروتين",
+      "calories": "سعرات"
+    },
+    "login": {
+      "eyebrow": "مرحباً بعودتك",
+      "title": "سجّل الدخول إلى حسابك",
+      "description": "أكمل رحلتك في الطهي الذكي عبر تسجيل الدخول.",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "example@foodai.com",
+      "passwordLabel": "كلمة المرور",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "نسيت كلمة المرور؟",
+      "rememberMe": "تذكر هذا الجهاز",
+      "submit": "تسجيل الدخول",
+      "loading": "جارٍ تسجيل الدخول...",
+      "divider": "أو",
+      "google": "المتابعة بواسطة جوجل",
+      "footerText": "ليس لديك حساب؟",
+      "footerLink": "أنشئ حساباً",
+      "showPassword": "إظهار كلمة المرور",
+      "hidePassword": "إخفاء كلمة المرور"
+    },
+    "register": {
+      "googleConnectedNotice": "تم ربط حساب Google. أكمل الآن تخصيص ملفك الغذائي والطهي.",
+      "divider": "أو",
+      "privacyCaption": "بياناتك محمية وتُستخدم فقط لتخصيص تجربتك.",
+      "actions": {
+        "back": "رجوع",
+        "continue": "متابعة",
+        "finish": "إنهاء إعداد المطبخ الذكي",
+        "loading": "جارٍ الحفظ...",
+        "google": "المتابعة بواسطة جوجل"
+      },
+      "footer": {
+        "haveAccount": "لديك حساب بالفعل؟",
+        "login": "تسجيل الدخول"
+      },
+      "fields": {
+        "fullName": {
+          "label": "الاسم الكامل",
+          "placeholder": "أليكس خبير الطهي"
+        },
+        "email": {
+          "label": "البريد الإلكتروني",
+          "placeholder": "alex@foodai.com"
+        },
+        "password": {
+          "label": "كلمة المرور",
+          "placeholder": "••••••••",
+          "show": "إظهار كلمة المرور",
+          "hide": "إخفاء كلمة المرور"
+        }
+      },
+      "steps": {
+        "step1": {
+          "eyebrow": "الخطوة 1 من 3",
+          "title": "أنشئ حسابك",
+          "description": "ابدأ رحلتك في الطهي الذكي عبر إدخال بيانات حسابك الأساسية."
+        },
+        "step2": {
+          "eyebrow": "الخطوة 2 من 3",
+          "title": "أخبرنا بتفضيلاتك الغذائية",
+          "description": "نستخدم هذه التفضيلات لتخصيص الوصفات والاقتراحات الغذائية لك."
+        },
+        "step3": {
+          "eyebrow": "الخطوة 3 من 3",
+          "title": "أنشئ ملفك الطبخي",
+          "description": "ساعد الذكاء الاصطناعي على فهم مستواك وأدواتك واحتياجات منزلك."
+        }
+      },
+      "sections": {
+        "dietary": {
+          "title": "التفضيلات الغذائية",
+          "description": "اختر الأنظمة أو القيود الغذائية التي تهمك أكثر."
+        },
+        "cuisines": {
+          "title": "المطابخ المفضلة",
+          "description": "اختر المطابخ التي تريد من أكالات التركيز عليها."
+        },
+        "allergies": {
+          "title": "الحساسيات",
+          "description": "أضف أي مكونات تريد أن نتجنبها في الوصفات.",
+          "placeholder": "مثال: الفول السوداني",
+          "add": "إضافة",
+          "remove": "حذف الحساسية"
+        },
+        "family": {
+          "title": "نوع الأسرة",
+          "description": "هذا يساعدنا على اقتراح الكميات ونوع الوجبات المناسبة."
+        },
+        "level": {
+          "title": "مستوى مهاراتك في الطبخ",
+          "description": "اختر المستوى الذي يعبّر عن خبرتك الحالية داخل المطبخ."
+        },
+        "tools": {
+          "title": "أدوات المطبخ المتوفرة",
+          "description": "اختر الأدوات الموجودة لديك حتى تبقى الوصفات واقعية بالنسبة لك."
+        },
+        "goals": {
+          "title": "هدفك الأساسي من الطهي",
+          "description": "ما الهدف الأهم بالنسبة لك الآن؟"
+        }
+      },
+      "options": {
+        "dietary": {
+          "none": "بدون قيود",
+          "keto": "كيتو",
+          "vegan": "نباتي",
+          "vegetarian": "نباتي مع الألبان",
+          "lowCarb": "منخفض الكربوهيدرات",
+          "paleo": "باليو"
+        },
+        "cuisines": {
+          "arabic": "عربي",
+          "italian": "إيطالي",
+          "asian": "آسيوي",
+          "french": "فرنسي"
+        },
+        "familyTypes": {
+          "single": "فرد واحد",
+          "couple": "زوجان",
+          "largeFamily": "عائلة كبيرة"
+        },
+        "levels": {
+          "beginner": "مبتدئ",
+          "intermediate": "متوسط",
+          "advanced": "محترف"
+        },
+        "levelDescriptions": {
+          "beginner": "وصفات بسيطة وسريعة",
+          "intermediate": "توازن بين الطعم والسرعة",
+          "advanced": "تقنيات متقدمة ووصفات معقدة"
+        },
+        "tools": {
+          "oven": "فرن",
+          "airFryer": "قلاية هوائية",
+          "blender": "خلاط",
+          "pressureCooker": "قدر ضغط",
+          "knifeSet": "طقم سكاكين",
+          "pot": "قدر طبخ",
+          "grill": "شواية",
+          "other": "أخرى"
+        },
+        "goals": {
+          "saveTime": "توفير الوقت",
+          "eatHealthier": "أكل صحي أكثر",
+          "learnSkills": "تعلم مهارات جديدة",
+          "saveMoney": "توفير المال"
+        }
+      }
+    },
+    "forgotPassword": {
+      "eyebrow": "استعادة الحساب",
+      "title": "نسيت كلمة المرور؟",
+      "description": "أدخل بريدك الإلكتروني وسنرسل لك رابط استعادة الحساب.",
+      "emailLabel": "البريد الإلكتروني",
+      "emailPlaceholder": "example@foodai.com",
+      "submit": "أرسل رابط الاستعادة",
+      "loading": "جارٍ الإرسال...",
+      "backToLogin": "العودة لتسجيل الدخول"
+    },
+    "resetPassword": {
+      "eyebrow": "تأمين الحساب",
+      "title": "تغيير كلمة المرور",
+      "description": "اختر كلمة مرور جديدة وقوية لحسابك.",
+      "passwordLabel": "كلمة المرور الجديدة",
+      "passwordPlaceholder": "••••••••",
+      "confirmPasswordLabel": "تأكيد كلمة المرور",
+      "confirmPasswordPlaceholder": "••••••••",
+      "submit": "تأكيد التغيير",
+      "loading": "جارٍ الحفظ...",
+      "footerText": "هل انتهيت بالفعل؟",
+      "footerLink": "اذهب لتسجيل الدخول",
+      "showPassword": "إظهار كلمة المرور",
+      "hidePassword": "إخفاء كلمة المرور",
+      "showConfirmPassword": "إظهار تأكيد كلمة المرور",
+      "hideConfirmPassword": "إخفاء تأكيد كلمة المرور"
+    },
+    "validation": {
+      "emailRequired": "البريد الإلكتروني مطلوب.",
+      "emailInvalid": "يرجى إدخال بريد إلكتروني صحيح.",
+      "passwordRequired": "كلمة المرور مطلوبة.",
+      "passwordMin": "يجب أن تكون كلمة المرور 8 أحرف على الأقل.",
+      "passwordUpper": "يجب أن تحتوي كلمة المرور على حرف كبير واحد على الأقل.",
+      "passwordNumber": "يجب أن تحتوي كلمة المرور على رقم واحد على الأقل.",
+      "passwordSpecial": "يجب أن تحتوي كلمة المرور على رمز خاص واحد على الأقل.",
+      "nameMin": "يجب أن يكون الاسم 3 أحرف على الأقل.",
+      "nameMax": "الاسم طويل جداً.",
+      "confirmPasswordRequired": "يرجى تأكيد كلمة المرور.",
+      "passwordsDoNotMatch": "كلمتا المرور غير متطابقتين.",
+      "dietaryRequired": "اختر تفضيلاً غذائياً واحداً على الأقل.",
+      "cuisineRequired": "اختر مطبخاً مفضلاً واحداً على الأقل.",
+      "allergiesMax": "يمكنك إضافة 10 حساسيات كحد أقصى.",
+      "cookingLevelRequired": "اختر مستوى الطهي الخاص بك.",
+      "familyTypeRequired": "اختر نوع الأسرة.",
+      "goalRequired": "اختر هدفك الأساسي.",
+      "toolsRequired": "اختر أداة مطبخ واحدة على الأقل."
+    }
+  }
 }

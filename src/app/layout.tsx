@@ -1,9 +1,14 @@
 import type { Metadata } from "next";
 import { Cairo, Geist } from "next/font/google";
+
 import "./globals.css";
+
 import { cn } from "@/src/shared/lib/utils";
 
-const geist = Geist({ subsets: ["latin"], variable: "--font-sans" });
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 const cairo = Cairo({
   subsets: ["arabic", "latin"],
@@ -11,8 +16,12 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: "اكلات",
-  description: "مساعد طبخ ذكي",
+  title: {
+    default: "Akalat",
+    template: "%s | Akalat",
+  },
+  description:
+    "AI-powered cooking experience with multilingual authentication and onboarding.",
 };
 
 export default function RootLayout({
@@ -21,8 +30,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html className={cn("font-sans", geist.variable)}>
-      <body>{children}</body>
+    <html
+      suppressHydrationWarning
+      className={cn("font-sans antialiased", geist.variable, cairo.variable)}
+    >
+      <body className="min-h-screen bg-background text-foreground">
+        {children}
+      </body>
     </html>
   );
 }
