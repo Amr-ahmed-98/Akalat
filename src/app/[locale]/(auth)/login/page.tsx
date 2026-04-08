@@ -1,11 +1,5 @@
 import { LoginForm } from "@/src/features/auth/ui/LoginForm";
 
-const LoginPage = () => {
-  return (
-    <main>
-      <LoginForm />
-    </main>
-  );
-};
-
-export default LoginPage;
+export default function LoginPage() {
+  return <LoginForm />;
+}

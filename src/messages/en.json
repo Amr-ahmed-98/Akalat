@@ -1,3 +1,215 @@
 {
-  "HomePage": { "title": "Hello world!" }
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "Auth": {
+    "layout": {
+      "backHome": "Back to home",
+      "privacyNote": "Your data is private and only used to improve your experience.",
+      "imageAlt": "Chef preparing food in the kitchen",
+      "heroBadge": "Smart ingredient analysis and tailored cooking",
+      "heroTitle": "Turn your kitchen into an intelligent cooking experience.",
+      "heroDescription": "AI-powered meal analysis, personalized plans and recipes that truly fit your taste and your tools.",
+      "topCardLabel": "Ingredient analysis",
+      "topCardTitle": "Fresh vegetables and smart recipe suggestions",
+      "bottomCardLabel": "Estimated nutrition",
+      "protein": "Protein",
+      "calories": "Calories"
+    },
+    "login": {
+      "eyebrow": "Welcome back",
+      "title": "Login to your account",
+      "description": "Sign in to continue your AI cooking experience.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "example@foodai.com",
+      "passwordLabel": "Password",
+      "passwordPlaceholder": "••••••••",
+      "forgotPassword": "Forgot password?",
+      "rememberMe": "Remember this device",
+      "submit": "Login",
+      "loading": "Logging in...",
+      "divider": "or",
+      "google": "Continue with Google",
+      "footerText": "Don’t have an account?",
+      "footerLink": "Create one",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password"
+    },
+    "register": {
+      "googleConnectedNotice": "Google account connected. Continue customizing your cooking profile.",
+      "divider": "or",
+      "privacyCaption": "Your data stays protected and is only used to personalize your experience.",
+      "actions": {
+        "back": "Back",
+        "continue": "Continue",
+        "finish": "Complete smart kitchen setup",
+        "loading": "Saving...",
+        "google": "Continue with Google"
+      },
+      "footer": {
+        "haveAccount": "Already have an account?",
+        "login": "Login"
+      },
+      "fields": {
+        "fullName": {
+          "label": "Full name",
+          "placeholder": "Alex Chef"
+        },
+        "email": {
+          "label": "Email address",
+          "placeholder": "alex@foodai.com"
+        },
+        "password": {
+          "label": "Password",
+          "placeholder": "••••••••",
+          "show": "Show password",
+          "hide": "Hide password"
+        }
+      },
+      "steps": {
+        "step1": {
+          "eyebrow": "Step 1 of 3",
+          "title": "Create your account",
+          "description": "Start your smart cooking journey with your basic account details."
+        },
+        "step2": {
+          "eyebrow": "Step 2 of 3",
+          "title": "Tell us your food preferences",
+          "description": "We use these preferences to tailor recipes and meal recommendations."
+        },
+        "step3": {
+          "eyebrow": "Step 3 of 3",
+          "title": "Build your cooking profile",
+          "description": "Help the AI understand your cooking level, home setup and kitchen tools."
+        }
+      },
+      "sections": {
+        "dietary": {
+          "title": "Dietary preferences",
+          "description": "Choose the styles or restrictions that matter most to you."
+        },
+        "cuisines": {
+          "title": "Favorite cuisines",
+          "description": "Pick the cuisines you want Akalat to prioritize."
+        },
+        "allergies": {
+          "title": "Allergies",
+          "description": "Add any ingredients you want us to avoid.",
+          "placeholder": "e.g. peanuts",
+          "add": "Add",
+          "remove": "Remove allergy"
+        },
+        "family": {
+          "title": "Household type",
+          "description": "This helps us suggest the right portions and meal types."
+        },
+        "level": {
+          "title": "Cooking level",
+          "description": "Choose the level that best matches your current confidence in the kitchen."
+        },
+        "tools": {
+          "title": "Available kitchen tools",
+          "description": "Select the tools you already have so recipes stay realistic."
+        },
+        "goals": {
+          "title": "Primary cooking goal",
+          "description": "What matters most to you right now?"
+        }
+      },
+      "options": {
+        "dietary": {
+          "none": "No restrictions",
+          "keto": "Keto",
+          "vegan": "Vegan",
+          "vegetarian": "Vegetarian",
+          "lowCarb": "Low carb",
+          "paleo": "Paleo"
+        },
+        "cuisines": {
+          "arabic": "Arabic",
+          "italian": "Italian",
+          "asian": "Asian",
+          "french": "French"
+        },
+        "familyTypes": {
+          "single": "Single",
+          "couple": "Couple",
+          "largeFamily": "Large family"
+        },
+        "levels": {
+          "beginner": "Beginner",
+          "intermediate": "Intermediate",
+          "advanced": "Advanced"
+        },
+        "levelDescriptions": {
+          "beginner": "Simple and quick recipes",
+          "intermediate": "Balanced flavor and speed",
+          "advanced": "Complex techniques and layered dishes"
+        },
+        "tools": {
+          "oven": "Oven",
+          "airFryer": "Air fryer",
+          "blender": "Blender",
+          "pressureCooker": "Pressure cooker",
+          "knifeSet": "Knife set",
+          "pot": "Cooking pot",
+          "grill": "Grill",
+          "other": "Other"
+        },
+        "goals": {
+          "saveTime": "Save time",
+          "eatHealthier": "Eat healthier",
+          "learnSkills": "Learn new skills",
+          "saveMoney": "Save money"
+        }
+      }
+    },
+    "forgotPassword": {
+      "eyebrow": "Account recovery",
+      "title": "Forgot your password?",
+      "description": "Enter your email and we’ll send you a recovery link.",
+      "emailLabel": "Email address",
+      "emailPlaceholder": "example@foodai.com",
+      "submit": "Send recovery link",
+      "loading": "Sending...",
+      "backToLogin": "Back to login"
+    },
+    "resetPassword": {
+      "eyebrow": "Secure your account",
+      "title": "Reset your password",
+      "description": "Choose a strong new password for your account.",
+      "passwordLabel": "New password",
+      "passwordPlaceholder": "••••••••",
+      "confirmPasswordLabel": "Confirm password",
+      "confirmPasswordPlaceholder": "••••••••",
+      "submit": "Confirm reset",
+      "loading": "Saving...",
+      "footerText": "Already fixed it?",
+      "footerLink": "Go to login",
+      "showPassword": "Show password",
+      "hidePassword": "Hide password",
+      "showConfirmPassword": "Show confirm password",
+      "hideConfirmPassword": "Hide confirm password"
+    },
+    "validation": {
+      "emailRequired": "Email is required.",
+      "emailInvalid": "Please enter a valid email address.",
+      "passwordRequired": "Password is required.",
+      "passwordMin": "Password must be at least 8 characters.",
+      "passwordUpper": "Password must include at least one uppercase letter.",
+      "passwordNumber": "Password must include at least one number.",
+      "passwordSpecial": "Password must include at least one special character.",
+      "nameMin": "Name must be at least 3 characters.",
+      "nameMax": "Name is too long.",
+      "confirmPasswordRequired": "Please confirm your password.",
+      "passwordsDoNotMatch": "Passwords do not match.",
+      "dietaryRequired": "Select at least one dietary preference.",
+      "cuisineRequired": "Select at least one favorite cuisine.",
+      "allergiesMax": "You can add up to 10 allergies only.",
+      "cookingLevelRequired": "Choose your cooking level.",
+      "familyTypeRequired": "Choose your household type.",
+      "goalRequired": "Choose your main goal.",
+      "toolsRequired": "Select at least one kitchen tool."
+    }
+  }
 }
