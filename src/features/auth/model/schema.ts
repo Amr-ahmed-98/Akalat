@@ -36,6 +36,10 @@ export type ForgotPasswordFormData = {
   email: string;
 };
 
+export type OtpVerificationFormData = {
+  code: string;
+};
+
 export type ResetPasswordFormData = {
   password: string;
   confirmPassword: string;
@@ -139,6 +143,15 @@ export const createRegisterSchema = (
 export const createForgotPasswordSchema = (t: Translate) =>
   z.object({
     email: emailRule(t),
+  });
+
+  export const createOtpSchema = (t: Translate) =>
+  z.object({
+    code: z
+      .string()
+      .min(1, t("otpRequired"))
+      .length(4, t("otpLength"))
+      .regex(/^\d{4}$/, t("otpDigits")),
   });
 
 export const createResetPasswordSchema = (t: Translate) =>

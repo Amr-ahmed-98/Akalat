@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 
@@ -17,6 +18,7 @@ export function ForgotPasswordForm() {
   const t = useTranslations("Auth.forgotPassword");
   const tValidation = useTranslations("Auth.validation");
   const locale = useLocale();
+  const router = useRouter();
 
   const schema = useMemo(
     () => createForgotPasswordSchema(tValidation),
@@ -36,7 +38,7 @@ export function ForgotPasswordForm() {
   });
 
   const onSubmit = async (data: ForgotPasswordFormData) => {
-    console.log("forgot-password payload", data);
+    router.push(`/${locale}/otp?email=${encodeURIComponent(data.email)}`);
   };
 
   return (

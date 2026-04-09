@@ -6,10 +6,28 @@ import {
   ArrowLeft,
   ArrowRight,
   Check,
+  ChefHat,
+  Clock3,
+  CookingPot,
+  Croissant,
   Eye,
   EyeOff,
+  Flame,
+  GraduationCap,
+  Heart,
+  HeartPulse,
+  Pizza,
   Plus,
+  Soup,
+  Sparkles,
+  Timer,
+  User,
+  Users,
+  UtensilsCrossed,
+  Wallet,
+  Wind,
   X,
+  type LucideIcon,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -20,6 +38,8 @@ import { type ZodIssue } from "zod";
 import { Button } from "@/src/shared/ui/button";
 import { Input } from "@/src/shared/ui/input";
 import { cn } from "@/src/shared/lib/utils";
+import { AuthOptionCard } from "./AuthOptionCard";
+import { GoogleAuthButton } from "./GoogleAuthButton";
 import {
   COOKING_LEVELS,
   CUISINES,
@@ -64,6 +84,43 @@ const motionProps = {
   exit: { opacity: 0, y: -18 },
   transition: { duration: 0.24, ease: "easeOut" },
 } as const;
+
+const CUISINE_ICONS: Record<string, LucideIcon> = {
+  arabic: UtensilsCrossed,
+  italian: Pizza,
+  asian: Soup,
+  french: Croissant,
+};
+
+const FAMILY_ICONS: Record<string, LucideIcon> = {
+  single: User,
+  couple: Heart,
+  largeFamily: Users,
+};
+
+const LEVEL_ICONS: Record<string, LucideIcon> = {
+  beginner: Sparkles,
+  intermediate: ChefHat,
+  advanced: Flame,
+};
+
+const TOOL_ICONS: Record<string, LucideIcon> = {
+  oven: CookingPot,
+  airFryer: Wind,
+  blender: Sparkles,
+  pressureCooker: Timer,
+  knifeSet: UtensilsCrossed,
+  pot: Soup,
+  grill: Flame,
+  other: ChefHat,
+};
+
+const GOAL_ICONS: Record<string, LucideIcon> = {
+  saveTime: Clock3,
+  eatHealthier: HeartPulse,
+  learnSkills: GraduationCap,
+  saveMoney: Wallet,
+};
 
 export function RegisterForm() {
   const t = useTranslations("Auth.register");
@@ -248,9 +305,7 @@ export function RegisterForm() {
   const addAllergy = () => {
     const trimmed = allergyInput.trim();
 
-    if (!trimmed) {
-      return;
-    }
+    if (!trimmed) return;
 
     if (allergies.includes(trimmed)) {
       setAllergyInput("");
@@ -320,15 +375,15 @@ export function RegisterForm() {
   const isArabic = locale === "ar";
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-5">
+    <div className="space-y-6 lg:space-y-7">
+      <div className="space-y-4">
         <StepIndicator
           currentStep={step}
           label={t(`steps.${stepTranslationKey}.eyebrow`)}
         />
 
         <div className="space-y-3">
-          <h1 className="text-4xl font-black tracking-tight">
+          <h1 className="text-3xl font-black tracking-tight sm:text-[2.2rem]">
             {t(`steps.${stepTranslationKey}.title`)}
           </h1>
           <p className="text-base text-muted-foreground">
@@ -343,7 +398,7 @@ export function RegisterForm() {
         )}
       </div>
 
-      <form className="space-y-6" noValidate onSubmit={handleFinalSubmit}>
+      <form className="space-y-5" noValidate onSubmit={handleFinalSubmit}>
         <AnimatePresence mode="wait" initial={false}>
           {step === 1 && (
             <motion.div key="step-1" {...motionProps} className="space-y-5">
@@ -355,12 +410,14 @@ export function RegisterForm() {
                   >
                     {t("fields.fullName.label")}
                   </label>
+
                   <Input
                     id="register-name"
                     autoComplete="name"
                     placeholder={t("fields.fullName.placeholder")}
                     {...register("fullName")}
                   />
+
                   {errors.fullName && (
                     <p className="text-sm text-destructive">
                       {errors.fullName.message}
@@ -375,6 +432,7 @@ export function RegisterForm() {
                   >
                     {t("fields.email.label")}
                   </label>
+
                   <Input
                     id="register-email"
                     type="email"
@@ -382,6 +440,7 @@ export function RegisterForm() {
                     placeholder={t("fields.email.placeholder")}
                     {...register("email")}
                   />
+
                   {errors.email && (
                     <p className="text-sm text-destructive">
                       {errors.email.message}
@@ -452,6 +511,7 @@ export function RegisterForm() {
                 <div className="absolute inset-0 flex items-center">
                   <span className="w-full border-t border-border" />
                 </div>
+
                 <div className="relative flex justify-center text-sm">
                   <span className="bg-background px-4 text-muted-foreground">
                     {t("divider")}
@@ -459,17 +519,10 @@ export function RegisterForm() {
                 </div>
               </div>
 
-              <Button
-                type="button"
-                variant="outline"
+              <GoogleAuthButton
+                label={t("actions.google")}
                 onClick={handleGoogleFlow}
-                className="h-12 w-full rounded-full text-base font-semibold"
-              >
-                <span className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-background text-sm font-black">
-                  G
-                </span>
-                {t("actions.google")}
-              </Button>
+              />
 
               <p className="text-center text-sm text-muted-foreground">
                 {t("footer.haveAccount")}{" "}
@@ -484,10 +537,10 @@ export function RegisterForm() {
           )}
 
           {step === 2 && (
-            <motion.div key="step-2" {...motionProps} className="space-y-6">
-              <section className="space-y-3">
+            <motion.div key="step-2" {...motionProps} className="space-y-5">
+              <section className="space-y-2.5">
                 <div>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     {t("sections.dietary.title")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
@@ -514,9 +567,9 @@ export function RegisterForm() {
                 )}
               </section>
 
-              <section className="space-y-3">
+              <section className="space-y-2.5">
                 <div>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     {t("sections.cuisines.title")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
@@ -524,17 +577,17 @@ export function RegisterForm() {
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-2.5 sm:grid-cols-2">
                   {CUISINES.map((value) => (
-                    <OptionCard
+                    <AuthOptionCard
                       key={value}
+                      icon={CUISINE_ICONS[value]}
+                      title={t(`options.cuisines.${value}`)}
                       active={favoriteCuisines.includes(value)}
                       onClick={() =>
                         toggleMultiValue("favoriteCuisines", value)
                       }
-                    >
-                      {t(`options.cuisines.${value}`)}
-                    </OptionCard>
+                    />
                   ))}
                 </div>
 
@@ -545,9 +598,9 @@ export function RegisterForm() {
                 )}
               </section>
 
-              <section className="space-y-3">
+              <section className="space-y-2.5">
                 <div>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     {t("sections.allergies.title")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
@@ -633,10 +686,10 @@ export function RegisterForm() {
           )}
 
           {step === 3 && (
-            <motion.div key="step-3" {...motionProps} className="space-y-6">
-              <section className="space-y-3">
+            <motion.div key="step-3" {...motionProps} className="space-y-5">
+              <section className="space-y-2.5">
                 <div>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     {t("sections.family.title")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
@@ -644,15 +697,15 @@ export function RegisterForm() {
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-2.5 sm:grid-cols-3">
                   {FAMILY_TYPES.map((value) => (
-                    <OptionCard
+                    <AuthOptionCard
                       key={value}
+                      icon={FAMILY_ICONS[value]}
+                      title={t(`options.familyTypes.${value}`)}
                       active={familyType === value}
                       onClick={() => selectSingleValue("familyType", value)}
-                    >
-                      {t(`options.familyTypes.${value}`)}
-                    </OptionCard>
+                    />
                   ))}
                 </div>
 
@@ -663,9 +716,9 @@ export function RegisterForm() {
                 )}
               </section>
 
-              <section className="space-y-3">
+              <section className="space-y-2.5">
                 <div>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     {t("sections.level.title")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
@@ -673,22 +726,16 @@ export function RegisterForm() {
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-3">
+                <div className="grid gap-2.5 sm:grid-cols-3">
                   {COOKING_LEVELS.map((value) => (
-                    <OptionCard
+                    <AuthOptionCard
                       key={value}
+                      icon={LEVEL_ICONS[value]}
+                      title={t(`options.levels.${value}`)}
+                      description={t(`options.levelDescriptions.${value}`)}
                       active={cookingLevel === value}
                       onClick={() => selectSingleValue("cookingLevel", value)}
-                    >
-                      <div className="space-y-1">
-                        <p className="font-semibold">
-                          {t(`options.levels.${value}`)}
-                        </p>
-                        <p className="text-xs text-muted-foreground">
-                          {t(`options.levelDescriptions.${value}`)}
-                        </p>
-                      </div>
-                    </OptionCard>
+                    />
                   ))}
                 </div>
 
@@ -699,9 +746,9 @@ export function RegisterForm() {
                 )}
               </section>
 
-              <section className="space-y-3">
+              <section className="space-y-2.5">
                 <div>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     {t("sections.tools.title")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
@@ -709,15 +756,15 @@ export function RegisterForm() {
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-2.5 sm:grid-cols-2">
                   {TOOLS.map((value) => (
-                    <OptionCard
+                    <AuthOptionCard
                       key={value}
+                      icon={TOOL_ICONS[value]}
+                      title={t(`options.tools.${value}`)}
                       active={availableTools.includes(value)}
                       onClick={() => toggleMultiValue("availableTools", value)}
-                    >
-                      {t(`options.tools.${value}`)}
-                    </OptionCard>
+                    />
                   ))}
                 </div>
 
@@ -728,9 +775,9 @@ export function RegisterForm() {
                 )}
               </section>
 
-              <section className="space-y-3">
+              <section className="space-y-2.5">
                 <div>
-                  <h2 className="text-lg font-black">
+                  <h2 className="text-base font-black sm:text-lg">
                     {t("sections.goals.title")}
                   </h2>
                   <p className="text-sm text-muted-foreground">
@@ -738,15 +785,15 @@ export function RegisterForm() {
                   </p>
                 </div>
 
-                <div className="grid gap-3 sm:grid-cols-2">
+                <div className="grid gap-2.5 sm:grid-cols-2">
                   {GOALS.map((value) => (
-                    <OptionCard
+                    <AuthOptionCard
                       key={value}
+                      icon={GOAL_ICONS[value]}
+                      title={t(`options.goals.${value}`)}
                       active={primaryGoal === value}
                       onClick={() => selectSingleValue("primaryGoal", value)}
-                    >
-                      {t(`options.goals.${value}`)}
-                    </OptionCard>
+                    />
                   ))}
                 </div>
 
@@ -841,34 +888,6 @@ function OptionChip({
     >
       {active && <Check className="size-4" />}
       {children}
-    </button>
-  );
-}
-
-function OptionCard({
-  active,
-  onClick,
-  children,
-}: {
-  active: boolean;
-  onClick: () => void;
-  children: ReactNode;
-}) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "rounded-3xl border p-4 text-start transition-all",
-        active
-          ? "border-primary bg-primary text-primary-foreground shadow-sm"
-          : "border-border bg-card hover:border-primary/40 hover:shadow-sm",
-      )}
-    >
-      <div className="flex items-start justify-between gap-3">
-        <div className="flex-1">{children}</div>
-        {active && <Check className="mt-0.5 size-4 shrink-0" />}
-      </div>
     </button>
   );
 }

@@ -22,78 +22,125 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
   const isArabic = locale === "ar";
 
   return (
-    <div className="grid min-h-screen bg-background lg:grid-cols-[minmax(0,1.05fr)_minmax(440px,560px)]">
-      <aside className="relative min-h-[300px] overflow-hidden lg:min-h-screen">
+    <div className="grid min-h-screen bg-background lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,540px)] xl:grid-cols-[minmax(0,1.08fr)_minmax(440px,560px)]">
+      <aside className="relative min-h-[360px] overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:min-h-screen">
         <Image
           src="/images/auth/auth-hero.webp"
           alt={t("imageAlt")}
           fill
           priority
-          sizes="(max-width: 1024px) 100vw, 55vw"
+          sizes="(max-width: 1024px) 100vw, 56vw"
           className="object-cover"
         />
 
-        <div className="absolute inset-0 bg-secondary/75" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-black/35" />
+        <div className="absolute inset-0 bg-secondary/76" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-black/35" />
 
         <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-4 sm:p-6 lg:hidden">
           <BrandLogo tone="light" />
           <LanguageSwitcher />
         </div>
 
-        <div className="relative z-10 hidden h-full flex-col justify-between p-8 text-white lg:flex xl:p-10">
-          <div className="flex items-center justify-between gap-6">
-            <BrandLogo tone="light" />
-            <LanguageSwitcher />
-          </div>
-
-          <div className="max-w-xl space-y-5">
+        <div className="absolute inset-x-0 bottom-0 z-10 px-4 pb-6 pt-24 text-white sm:px-6 lg:hidden">
+          <div className="max-w-[24rem] space-y-4">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur">
               <Sparkles className="size-4" />
               <span>{t("heroBadge")}</span>
             </div>
 
-            <h1 className="text-balance text-4xl font-black leading-tight sm:text-5xl xl:text-6xl">
-              {t("heroTitle")}
-            </h1>
+            <div className="space-y-3">
+              <h1
+                className={cn(
+                  "line-clamp-3 text-3xl font-black leading-[1.05] tracking-[-0.03em] sm:text-[2.6rem]",
+                  locale === "en" ? "max-w-[18ch]" : "max-w-[13ch]",
+                )}
+              >
+                {t("heroTitle")}
+              </h1>
 
-            <p className="max-w-lg text-base text-white/80 sm:text-lg">
-              {t("heroDescription")}
-            </p>
+              <p className="max-w-[32rem] text-sm text-white/82 sm:text-base">
+                {t("heroDescription")}
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div className="relative z-10 hidden h-full flex-col p-8 text-white lg:flex xl:p-10">
+          <div className="flex items-center justify-between gap-6">
+            <BrandLogo tone="light" />
+            <LanguageSwitcher />
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-3xl bg-white p-5 text-foreground shadow-2xl">
-              <div className="mb-2 flex items-center gap-2 text-primary">
-                <Sparkles className="size-4" />
-                <span className="text-sm font-semibold">
-                  {t("topCardLabel")}
-                </span>
-              </div>
-              <p className="text-lg font-black">{t("topCardTitle")}</p>
-            </div>
-
-            <div className="rounded-3xl bg-white p-5 text-foreground shadow-2xl">
-              <div className="mb-3 flex items-center gap-2 text-primary">
-                <Flame className="size-4" />
-                <span className="text-sm font-semibold">
-                  {t("bottomCardLabel")}
-                </span>
-              </div>
-
-              <div className="flex items-end gap-6">
-                <div>
-                  <p className="text-xs text-muted-foreground">
-                    {t("protein")}
-                  </p>
-                  <p className="text-xl font-black text-primary">12g</p>
+          <div className="flex flex-1 items-center py-8">
+            <div className="w-full max-w-[39rem] space-y-8 xl:space-y-10">
+              <div className="max-w-[38rem] space-y-6">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur">
+                  <Sparkles className="size-4" />
+                  <span>{t("heroBadge")}</span>
                 </div>
 
-                <div>
-                  <p className="text-xs text-muted-foreground">
-                    {t("calories")}
-                  </p>
-                  <p className="text-xl font-black text-primary">340</p>
+                <h1
+                  className={cn(
+                    "font-black",
+                    locale === "en"
+                      ? "max-w-[21ch] text-[clamp(2.65rem,3.8vw,3.6rem)] leading-[1.08] tracking-[-0.03em]"
+                      : "max-w-[12ch] text-[clamp(2.8rem,4vw,3.75rem)] leading-[1.2] tracking-normal",
+                  )}
+                >
+                  {t("heroTitle")}
+                </h1>
+
+                <p className="max-w-[34rem] text-base text-white/82 xl:text-lg">
+                  {t("heroDescription")}
+                </p>
+              </div>
+
+              <div className="grid max-w-[34rem] gap-4 sm:grid-cols-[minmax(0,16rem)_minmax(0,16rem)] sm:items-stretch xl:max-w-[35rem] xl:gap-5">
+                <div className="flex h-full min-h-[168px] flex-col justify-between rounded-[28px] bg-white/95 p-5 text-slate-700 shadow-[0_20px_55px_rgba(0,0,0,0.22)] backdrop-blur">
+                  <div className="flex items-start gap-3">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary text-white shadow-sm">
+                      <Sparkles className="size-5" />
+                    </span>
+
+                    <div className="space-y-1.5">
+                      <p className="text-sm font-semibold text-primary/75">
+                        {t("topCardLabel")}
+                      </p>
+                      <p className="text-base font-bold leading-7 text-slate-700/90">
+                        {t("topCardTitle")}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="flex h-full min-h-[168px] flex-col justify-between rounded-[28px] bg-white/95 p-5 text-slate-700 shadow-[0_22px_60px_rgba(0,0,0,0.2)] backdrop-blur">
+                  <div className="mb-4 flex items-center gap-3">
+                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary/12 text-primary">
+                      <Flame className="size-5" />
+                    </span>
+
+                    <div className="space-y-1">
+                      <p className="text-sm font-semibold text-slate-700/85">
+                        {t("bottomCardLabel")}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium text-muted-foreground">
+                        {t("protein")}
+                      </p>
+                      <p className="text-2xl font-black text-primary">12g</p>
+                    </div>
+
+                    <div className="space-y-1">
+                      <p className="text-xs font-medium text-muted-foreground">
+                        {t("calories")}
+                      </p>
+                      <p className="text-2xl font-black text-primary">340</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -102,39 +149,36 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
       </aside>
 
       <section className="relative flex min-h-screen flex-col">
-        <div className="mx-auto flex w-full max-w-xl flex-1 flex-col px-4 pb-10 pt-4 sm:px-6 sm:pt-6 lg:px-10 xl:px-12">
-          <div className="hidden items-center justify-between gap-6 lg:flex">
+        <div className="mx-auto flex w-full max-w-[34rem] flex-1 flex-col px-4 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-6 lg:px-8 lg:py-8 xl:px-10">
+          <div className="hidden items-center lg:flex">
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className={cn("size-4", isArabic && "rotate-180")} />
               {t("backHome")}
             </Link>
-
-            <div className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-2 text-xs text-muted-foreground shadow-sm ring-1 ring-border">
-              <ShieldCheck className="size-4 text-primary" />
-              <span>{t("privacyNote")}</span>
-            </div>
           </div>
 
-          <div className="mb-6 mt-4 flex items-center justify-between gap-4 lg:hidden">
+          <div className="mb-6 mt-4 flex items-center lg:hidden">
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
             >
               <ArrowLeft className={cn("size-4", isArabic && "rotate-180")} />
               {t("backHome")}
             </Link>
-
-            <div className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-2 text-xs text-muted-foreground shadow-sm ring-1 ring-border">
-              <ShieldCheck className="size-4 text-primary" />
-              <span>{t("privacyNote")}</span>
-            </div>
           </div>
 
-          <div className="flex flex-1 items-center">
+          <div className="flex flex-1 items-center py-2">
             <div className="w-full">{children}</div>
+          </div>
+
+          <div className="flex justify-center pt-4">
+            <div className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-2 text-center text-xs text-muted-foreground shadow-sm ring-1 ring-border">
+              <ShieldCheck className="size-4 text-primary" />
+              <span>{t("privacyNote")}</span>
+            </div>
           </div>
         </div>
       </section>

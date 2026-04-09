@@ -4,6 +4,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
+import { useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -18,6 +19,7 @@ export function ResetPasswordForm() {
   const t = useTranslations("Auth.resetPassword");
   const tValidation = useTranslations("Auth.validation");
   const locale = useLocale();
+  const router = useRouter();
 
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -42,6 +44,7 @@ export function ResetPasswordForm() {
 
   const onSubmit = async (data: ResetPasswordFormData) => {
     console.log("reset-password payload", data);
+    router.push(`/${locale}`);
   };
 
   return (

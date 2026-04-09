@@ -10,6 +10,7 @@ import { useForm } from "react-hook-form";
 
 import { Button } from "@/src/shared/ui/button";
 import { Input } from "@/src/shared/ui/input";
+import { GoogleAuthButton } from "./GoogleAuthButton";
 import { createLoginSchema, type LoginFormData } from "../model/schema";
 
 export function LoginForm() {
@@ -58,6 +59,7 @@ export function LoginForm() {
           <label htmlFor="login-email" className="block text-sm font-semibold">
             {t("emailLabel")}
           </label>
+
           <Input
             id="login-email"
             type="email"
@@ -65,6 +67,7 @@ export function LoginForm() {
             placeholder={t("emailPlaceholder")}
             {...register("email")}
           />
+
           {errors.email && (
             <p className="text-sm text-destructive">{errors.email.message}</p>
           )}
@@ -80,7 +83,7 @@ export function LoginForm() {
             </label>
 
             <Link
-              href={`/${locale}/forgot-password`}
+              href={`/${locale}/forget-password`}
               className="text-sm font-semibold text-primary hover:underline"
             >
               {t("forgotPassword")}
@@ -138,6 +141,7 @@ export function LoginForm() {
           <div className="absolute inset-0 flex items-center">
             <span className="w-full border-t border-border" />
           </div>
+
           <div className="relative flex justify-center text-sm">
             <span className="bg-background px-4 text-muted-foreground">
               {t("divider")}
@@ -145,17 +149,7 @@ export function LoginForm() {
           </div>
         </div>
 
-        <Button
-          type="button"
-          variant="outline"
-          onClick={handleGoogleClick}
-          className="h-12 w-full rounded-full text-base font-semibold"
-        >
-          <span className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-background text-sm font-black">
-            G
-          </span>
-          {t("google")}
-        </Button>
+        <GoogleAuthButton label={t("google")} onClick={handleGoogleClick} />
 
         <p className="text-center text-sm text-muted-foreground">
           {t("footerText")}{" "}
