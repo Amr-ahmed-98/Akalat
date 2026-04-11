@@ -42,7 +42,7 @@
       "actions": {
         "back": "Back",
         "continue": "Continue",
-        "finish": "Complete smart kitchen setup",
+        "finish": "Done",
         "loading": "Saving...",
         "google": "Continue with Google"
       },

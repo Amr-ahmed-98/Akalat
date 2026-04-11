@@ -471,7 +471,7 @@ export function RegisterForm() {
                     <button
                       type="button"
                       onClick={() => setShowPassword((value) => !value)}
-                      className="absolute inset-y-0 end-3 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
+                      className="absolute inset-y-0 inset-e-3 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
                       aria-label={
                         showPassword
                           ? t("fields.password.hide")
@@ -622,7 +622,7 @@ export function RegisterForm() {
                   <Button
                     type="button"
                     variant="outline"
-                    className="h-12 w-1/4 rounded-2xl px-4 border-dashed border-primary border-2 text-primary hover:bg-primary hover:text-ca"
+                    className="h-12 w-1/4 rounded-2xl px-4 border-dashed border-primary border-2 text-primary cursor-pointer hover:bg-primary hover:text-card"
                     onClick={addAllergy}
                   >
                     <Plus className="size-4" />
@@ -662,7 +662,7 @@ export function RegisterForm() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
+                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer border-2 border-solid border-primary hover:bg-primary hover:text-card"
                   onClick={() => setStep(1)}
                 >
                   <ArrowLeft
@@ -812,7 +812,7 @@ export function RegisterForm() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
+                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer border-2 border-solid border-primary hover:bg-primary hover:text-card"
                   onClick={() => setStep(2)}
                 >
                   <ArrowLeft

@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, Flame, ShieldCheck, Sparkles } from "lucide-react";
+import { ArrowLeft, ShieldCheck, Sparkles } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import type { Locale } from "@/src/shared/config/i18n";
@@ -23,7 +23,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
 
   return (
     <div className="grid min-h-screen bg-background lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,540px)] xl:grid-cols-[minmax(0,1.08fr)_minmax(440px,560px)]">
-      <aside className="relative min-h-[360px] overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:min-h-screen">
+      <aside className="relative min-h-90 overflow-hidden lg:sticky lg:top-0 lg:h-screen lg:min-h-screen">
         <Image
           src="/images/auth/auth-hero.webp"
           alt={t("imageAlt")}
@@ -58,7 +58,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
                 {t("heroTitle")}
               </h1>
 
-              <p className="max-w-[32rem] text-sm text-white/82 sm:text-base">
+              <p className="max-w-lg text-sm text-white/82 sm:text-base">
                 {t("heroDescription")}
               </p>
             </div>
@@ -72,8 +72,8 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
           </div>
 
           <div className="flex flex-1 items-center py-8">
-            <div className="w-full max-w-[39rem] space-y-8 xl:space-y-10">
-              <div className="max-w-[38rem] space-y-6">
+            <div className="w-full max-w-156 space-y-8 xl:space-y-10">
+              <div className="max-w-152 space-y-6">
                 <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-sm backdrop-blur">
                   <Sparkles className="size-4" />
                   <span>{t("heroBadge")}</span>
@@ -90,7 +90,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
                   {t("heroTitle")}
                 </h1>
 
-                <p className="max-w-[34rem] text-base text-white/82 xl:text-lg">
+                <p className="max-w-136 text-base text-white/82 xl:text-lg">
                   {t("heroDescription")}
                 </p>
               </div>
@@ -102,10 +102,10 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
                   </span>
 
                   <div className="space-y-1.5">
-                    <p className="text-sm font-semibold text-primary/75">
+                    <p className="text-sm font-semibold text-primary">
                       {t("topCardLabel")}
                     </p>
-                    <p className="text-base font-bold leading-7 text-slate-700/90">
+                    <p className="text-base font-light leading-7 text-sidebar-accent-foreground">
                       {t("topCardTitle")}
                     </p>
                   </div>
@@ -117,11 +117,11 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
       </aside>
 
       <section className="relative flex min-h-screen flex-col">
-        <div className="mx-auto flex w-full max-w-[34rem] flex-1 flex-col px-4 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-6 lg:px-8 lg:py-8 xl:px-10">
+        <div className="mx-auto flex w-full max-w-136 flex-1 flex-col px-4 pb-8 pt-4 sm:px-6 sm:pb-10 sm:pt-6 lg:px-8 lg:py-8 xl:px-10">
           <div className="hidden items-center lg:flex">
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-foreground transition-colors hover:text-primary"
             >
               <ArrowLeft className={cn("size-4", isArabic && "rotate-180")} />
               {t("backHome")}
@@ -131,7 +131,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
           <div className="mb-6 mt-4 flex items-center lg:hidden">
             <Link
               href={`/${locale}`}
-              className="inline-flex items-center gap-2 whitespace-nowrap text-sm font-semibold text-muted-foreground transition-colors hover:text-foreground"
+              className="inline-flex items-center gap-2 whites1pace-nowrap text-sm font-semibold text-foreground transition-colors hover:text-primary"
             >
               <ArrowLeft className={cn("size-4", isArabic && "rotate-180")} />
               {t("backHome")}

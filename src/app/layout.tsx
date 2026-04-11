@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { Cairo, Geist } from "next/font/google";
+import { Cairo, Arimo } from "next/font/google";
 
 import "./globals.css";
 
 import { cn } from "@/src/shared/lib/utils";
 
-const geist = Geist({
+const arimo = Arimo({
   subsets: ["latin"],
   variable: "--font-sans",
 });
@@ -32,7 +32,7 @@ export default function RootLayout({
   return (
     <html
       suppressHydrationWarning
-      className={cn("font-sans antialiased", geist.variable, cairo.variable)}
+      className={cn("font-sans antialiased", arimo.variable, cairo.variable)}
     >
       <body className="min-h-screen bg-background text-foreground">
         {children}
