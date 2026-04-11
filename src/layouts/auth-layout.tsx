@@ -34,7 +34,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
         />
 
         <div className="absolute inset-0 bg-secondary/76" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/25 to-black/35" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/25 to-black/35" />
 
         <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-4 sm:p-6 lg:hidden">
           <BrandLogo tone="light" />
@@ -95,51 +95,19 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
                 </p>
               </div>
 
-              <div className="grid max-w-[34rem] gap-4 sm:grid-cols-[minmax(0,16rem)_minmax(0,16rem)] sm:items-stretch xl:max-w-[35rem] xl:gap-5">
-                <div className="flex h-full min-h-[168px] flex-col justify-between rounded-[28px] bg-white/95 p-5 text-slate-700 shadow-[0_20px_55px_rgba(0,0,0,0.22)] backdrop-blur">
-                  <div className="flex items-start gap-3">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary text-white shadow-sm">
-                      <Sparkles className="size-5" />
-                    </span>
+              <div className="flex h-full flex-col justify-between rounded-2xl bg-white/95 p-5 text-slate-700 shadow-[0_20px_55px_rgba(0,0,0,0.22)] backdrop-blur">
+                <div className="flex items-start gap-3">
+                  <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary text-white shadow-sm">
+                    <Sparkles className="size-5" />
+                  </span>
 
-                    <div className="space-y-1.5">
-                      <p className="text-sm font-semibold text-primary/75">
-                        {t("topCardLabel")}
-                      </p>
-                      <p className="text-base font-bold leading-7 text-slate-700/90">
-                        {t("topCardTitle")}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="flex h-full min-h-[168px] flex-col justify-between rounded-[28px] bg-white/95 p-5 text-slate-700 shadow-[0_22px_60px_rgba(0,0,0,0.2)] backdrop-blur">
-                  <div className="mb-4 flex items-center gap-3">
-                    <span className="grid size-11 shrink-0 place-items-center rounded-full bg-primary/12 text-primary">
-                      <Flame className="size-5" />
-                    </span>
-
-                    <div className="space-y-1">
-                      <p className="text-sm font-semibold text-slate-700/85">
-                        {t("bottomCardLabel")}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-6">
-                    <div className="space-y-1">
-                      <p className="text-xs font-medium text-muted-foreground">
-                        {t("protein")}
-                      </p>
-                      <p className="text-2xl font-black text-primary">12g</p>
-                    </div>
-
-                    <div className="space-y-1">
-                      <p className="text-xs font-medium text-muted-foreground">
-                        {t("calories")}
-                      </p>
-                      <p className="text-2xl font-black text-primary">340</p>
-                    </div>
+                  <div className="space-y-1.5">
+                    <p className="text-sm font-semibold text-primary/75">
+                      {t("topCardLabel")}
+                    </p>
+                    <p className="text-base font-bold leading-7 text-slate-700/90">
+                      {t("topCardTitle")}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -175,7 +143,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
           </div>
 
           <div className="flex justify-center pt-4">
-            <div className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-2 text-center text-xs text-muted-foreground shadow-sm ring-1 ring-border">
+            <div className="inline-flex items-center gap-2 rounded-full bg-card px-3 py-2 text-center text-xs text-foreground shadow-sm ring-1 ring-border">
               <ShieldCheck className="size-4 text-primary" />
               <span>{t("privacyNote")}</span>
             </div>

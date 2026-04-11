@@ -72,7 +72,7 @@ export function ForgotPasswordForm() {
 
         <Button
           type="submit"
-          className="h-12 w-full rounded-full text-base font-semibold"
+          className="h-12 w-full rounded-full text-base font-semibold cursor-pointer"
           disabled={isSubmitting}
         >
           {isSubmitting ? t("loading") : t("submit")}

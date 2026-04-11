@@ -66,6 +66,7 @@ export function LoginForm() {
             autoComplete="email"
             placeholder={t("emailPlaceholder")}
             {...register("email")}
+            className="h-12 bg-card "
           />
 
           {errors.email && (
@@ -96,14 +97,14 @@ export function LoginForm() {
               type={showPassword ? "text" : "password"}
               autoComplete="current-password"
               placeholder={t("passwordPlaceholder")}
-              className="pe-12"
+              className="pe-12 h-12 bg-card"
               {...register("password")}
             />
 
             <button
               type="button"
               onClick={() => setShowPassword((value) => !value)}
-              className="absolute inset-y-0 end-3 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
+              className="absolute inset-y-0 inset-e-3 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground cursor-pointer"
               aria-label={showPassword ? t("hidePassword") : t("showPassword")}
             >
               {showPassword ? (
@@ -131,7 +132,7 @@ export function LoginForm() {
 
         <Button
           type="submit"
-          className="h-12 w-full rounded-full text-base font-semibold"
+          className="h-12 w-full rounded-full text-base font-semibold cursor-pointer"
           disabled={isSubmitting}
         >
           {isSubmitting ? t("loading") : t("submit")}
@@ -149,13 +150,17 @@ export function LoginForm() {
           </div>
         </div>
 
-        <GoogleAuthButton label={t("google")} onClick={handleGoogleClick} />
+        <GoogleAuthButton
+          label={t("google")}
+          onClick={handleGoogleClick}
+          className="cursor-pointer"
+        />
 
         <p className="text-center text-sm text-muted-foreground">
           {t("footerText")}{" "}
           <Link
             href={`/${locale}/register`}
-            className="font-semibold text-primary hover:underline"
+            className="font-semibold text-primary hover:underline px-1"
           >
             {t("footerLink")}
           </Link>

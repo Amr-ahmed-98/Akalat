@@ -24,7 +24,7 @@ export function AuthOptionCard({
       type="button"
       onClick={onClick}
       className={cn(
-        "relative flex min-h-[112px] flex-col justify-between rounded-[24px] border p-3.5 text-start transition-all sm:min-h-[118px] sm:p-4",
+        "relative flex min-h-28 flex-col justify-between rounded-[24px] border p-3.5 text-start transition-all cursor-pointer sm:min-h-29.5 sm:p-4",
         active
           ? "border-primary bg-primary text-primary-foreground shadow-[0_16px_38px_rgba(251,90,42,0.24)]"
           : "border-border bg-card text-foreground hover:border-primary/35 hover:shadow-sm",
@@ -45,13 +45,13 @@ export function AuthOptionCard({
 
         <span
           className={cn(
-            "grid size-5 place-items-center rounded-full border text-[10px] sm:size-6",
+            "grid size-5 place-items-center rounded-full border text-[10px] sm:size-6 ",
             active
-              ? "border-white/30 bg-white/15 text-white"
+              ? "border-white bg-white/25  text-white"
               : "border-border bg-background text-transparent",
           )}
         >
-          <Check className="size-3.5" />
+          <Check className="size-4 font-bold " />
         </span>
       </div>
 

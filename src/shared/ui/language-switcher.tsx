@@ -44,10 +44,10 @@ export function LanguageSwitcher() {
             href={href}
             locale={"false"}
             className={cn(
-              "rounded-full px-3 py-1.5 text-sm font-semibold transition-colors",
+              "rounded-full px-3 py-1.5 text-sm font-semibold transition-colors  ",
               active
                 ? "bg-primary text-primary-foreground"
-                : "text-muted-foreground hover:text-foreground",
+                : "text-black font-bold  hover:text-muted-foreground",
             )}
           >
             {locale === "ar" ? "AR" : "EN"}

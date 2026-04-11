@@ -156,7 +156,7 @@ export function OtpVerificationForm() {
         <Button
           type="button"
           onClick={handleSubmit}
-          className="h-12 w-full rounded-full text-base font-semibold"
+          className="h-12 w-full rounded-full text-base font-semibold cursor-pointer"
           disabled={isSubmitting}
         >
           {isSubmitting ? t("loading") : t("submit")}

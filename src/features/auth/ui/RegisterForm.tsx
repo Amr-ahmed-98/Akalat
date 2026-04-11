@@ -416,6 +416,7 @@ export function RegisterForm() {
                     autoComplete="name"
                     placeholder={t("fields.fullName.placeholder")}
                     {...register("fullName")}
+                    className="h-12 bg-card"
                   />
 
                   {errors.fullName && (
@@ -439,6 +440,7 @@ export function RegisterForm() {
                     autoComplete="email"
                     placeholder={t("fields.email.placeholder")}
                     {...register("email")}
+                    className="h-12 bg-card"
                   />
 
                   {errors.email && (
@@ -462,7 +464,7 @@ export function RegisterForm() {
                       type={showPassword ? "text" : "password"}
                       autoComplete="new-password"
                       placeholder={t("fields.password.placeholder")}
-                      className="pe-12"
+                      className="pe-12 h-12 bg-card"
                       {...register("password")}
                     />
 
@@ -494,7 +496,7 @@ export function RegisterForm() {
 
               <Button
                 type="button"
-                className="h-12 w-full rounded-full text-base font-semibold"
+                className="h-12 w-full rounded-full text-base font-semibold cursor-pointer"
                 onClick={() => {
                   if (validateStep(1)) {
                     setStep(2);
@@ -522,13 +524,14 @@ export function RegisterForm() {
               <GoogleAuthButton
                 label={t("actions.google")}
                 onClick={handleGoogleFlow}
+                className="cursor-pointer"
               />
 
               <p className="text-center text-sm text-muted-foreground">
                 {t("footer.haveAccount")}{" "}
                 <Link
                   href={`/${locale}/login`}
-                  className="font-semibold text-primary hover:underline"
+                  className="font-semibold text-primary hover:underline px-1"
                 >
                   {t("footer.login")}
                 </Link>
@@ -613,12 +616,13 @@ export function RegisterForm() {
                     value={allergyInput}
                     onChange={(event) => setAllergyInput(event.target.value)}
                     placeholder={t("sections.allergies.placeholder")}
+                    className="h-12 bg-card"
                   />
 
                   <Button
                     type="button"
                     variant="outline"
-                    className="h-12 rounded-2xl px-4"
+                    className="h-12 w-1/4 rounded-2xl px-4 border-dashed border-primary border-2 text-primary hover:bg-primary hover:text-ca"
                     onClick={addAllergy}
                   >
                     <Plus className="size-4" />
@@ -658,7 +662,7 @@ export function RegisterForm() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 flex-1 rounded-full text-base font-semibold"
+                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
                   onClick={() => setStep(1)}
                 >
                   <ArrowLeft
@@ -669,7 +673,7 @@ export function RegisterForm() {
 
                 <Button
                   type="button"
-                  className="h-12 flex-1 rounded-full text-base font-semibold"
+                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
                   onClick={() => {
                     if (validateStep(2)) {
                       setStep(3);
@@ -804,11 +808,11 @@ export function RegisterForm() {
                 )}
               </section>
 
-              <div className="flex flex-col gap-3 sm:flex-row">
+              <div className="flex flex-col gap-3 sm:flex-row cursor-pointer">
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 flex-1 rounded-full text-base font-semibold"
+                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
                   onClick={() => setStep(2)}
                 >
                   <ArrowLeft
@@ -819,7 +823,7 @@ export function RegisterForm() {
 
                 <Button
                   type="submit"
-                  className="h-12 flex-1 rounded-full text-base font-semibold"
+                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? t("actions.loading") : t("actions.finish")}
@@ -880,7 +884,7 @@ function OptionChip({
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
+        "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors cursor-pointer",
         active
           ? "border-primary bg-primary text-primary-foreground"
           : "border-border bg-card text-foreground hover:border-primary/40",
