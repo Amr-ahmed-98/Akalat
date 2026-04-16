@@ -1,45 +1,44 @@
+import type {
+  CookingSkillLevel,
+  DietaryPreference,
+  FavoriteCuisine,
+  HouseholdType,
+  KitchenTool,
+  PrimaryCookingGoal,
+} from "./types";
+
 export const DIETARY_PREFERENCES = [
-  "none",
   "keto",
   "vegan",
   "vegetarian",
-  "lowCarb",
   "paleo",
-] as const;
+  "low-carb",
+] as const satisfies readonly DietaryPreference[];
 
-export const CUISINES = [
-  "arabic",
-  "italian",
-  "asian",
-  "french",
-] as const;
+export const CUISINES = ["arabic", "asian", "italian", "french"] as const satisfies readonly FavoriteCuisine[];
 
-export const COOKING_LEVELS = [
+export const COOKING_SKILL_LEVELS = [
   "beginner",
   "intermediate",
-  "advanced",
-] as const;
+  "professional",
+] as const satisfies readonly CookingSkillLevel[];
 
-export const FAMILY_TYPES = [
-  "single",
-  "couple",
-  "largeFamily",
-] as const;
+export const HOUSEHOLD_TYPES = ["single", "couple", "family"] as const satisfies readonly HouseholdType[];
 
-export const GOALS = [
-  "saveTime",
-  "eatHealthier",
-  "learnSkills",
-  "saveMoney",
-] as const;
+export const PRIMARY_COOKING_GOALS = [
+  "save-time",
+  "healthy-eating",
+  "learn-skills",
+  "save-money",
+] as const satisfies readonly PrimaryCookingGoal[];
 
-export const TOOLS = [
+export const KITCHEN_TOOLS = [
   "oven",
-  "airFryer",
+  "air-fryer",
+  "pressure-cooker",
   "blender",
-  "pressureCooker",
-  "knifeSet",
+  "hand-blender",
   "pot",
-  "grill",
-  "other",
-] as const;
+  "microwave",
+  "stand-mixer",
+] as const satisfies readonly KitchenTool[];

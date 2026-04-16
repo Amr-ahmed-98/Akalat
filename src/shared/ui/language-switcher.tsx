@@ -42,7 +42,6 @@ export function LanguageSwitcher() {
           <Link
             key={locale}
             href={href}
-            locale={"false"}
             className={cn(
               "rounded-full px-3 py-1.5 text-sm font-semibold transition-colors  ",
               active

@@ -4,23 +4,37 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
-
+import { toast } from "sonner";
 import { Button } from "@/src/shared/ui/button";
 import { Input } from "@/src/shared/ui/input";
+import { getApiErrorMessage, resetPassword } from "../model/auth-api";
+import {
+  clearPasswordResetFlowState,
+  getPasswordResetFlowState,
+  setPasswordResetToken,
+} from "../model/flow-state";
 import {
   createResetPasswordSchema,
   type ResetPasswordFormData,
 } from "../model/schema";
+
+function FieldError({ message }: { message?: string }) {
+  if (!message) {
+    return null;
+  }
+
+  return <p className="mt-2 text-sm text-destructive">{message}</p>;
+}
 
 export function ResetPasswordForm() {
   const t = useTranslations("Auth.resetPassword");
   const tValidation = useTranslations("Auth.validation");
   const locale = useLocale();
   const router = useRouter();
-
+  const searchParams = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -29,6 +43,22 @@ export function ResetPasswordForm() {
     [tValidation],
   );
 
+  const tokenFromQuery = searchParams.get("token") ?? "";
+  const resetFlow = getPasswordResetFlowState();
+  const resolvedToken = tokenFromQuery || resetFlow?.resetToken || "";
+
+  useEffect(() => {
+    if (tokenFromQuery) {
+      setPasswordResetToken(tokenFromQuery);
+      return;
+    }
+
+    const currentFlow = getPasswordResetFlowState();
+    if (!currentFlow || !currentFlow.otpVerified) {
+      router.replace(`/${locale}/forget-password`);
+    }
+  }, [locale, router, tokenFromQuery]);
+
   const {
     register,
     handleSubmit,
@@ -36,51 +66,69 @@ export function ResetPasswordForm() {
   } = useForm<ResetPasswordFormData>({
     resolver: zodResolver(schema),
     defaultValues: {
-      password: "",
+      newPassword: "",
       confirmPassword: "",
     },
     mode: "onBlur",
   });
 
   const onSubmit = async (data: ResetPasswordFormData) => {
-    console.log("reset-password payload", data);
-    router.push(`/${locale}`);
+    if (!resolvedToken) {
+      toast.error(t("missingToken"));
+      return;
+    }
+
+    try {
+      const payload = await resetPassword({
+        token: resolvedToken,
+        newPassword: data.newPassword,
+        confirmPassword: data.confirmPassword,
+      });
+
+      clearPasswordResetFlowState();
+      toast.success(payload.message);
+      router.replace(`/${locale}/login`);
+    } catch (error) {
+      toast.error(getApiErrorMessage(error, t("fallbackError")));
+    }
   };
 
   return (
-    <div className="space-y-8">
-      <div className="space-y-3">
-        <p className="text-sm font-semibold text-muted-foreground">
+    <div className="space-y-6">
+      <div className="space-y-2 text-center">
+        <p className="text-sm font-medium uppercase tracking-[0.2em] text-primary/80">
           {t("eyebrow")}
         </p>
-        <h1 className="text-4xl font-black tracking-tight">{t("title")}</h1>
-        <p className="text-base text-muted-foreground">{t("description")}</p>
+        <h1 className="text-3xl font-black tracking-tight text-foreground">
+          {t("title")}
+        </h1>
+        <p className="text-sm leading-6 text-muted-foreground">
+          {t("description")}
+        </p>
       </div>
 
-      <form className="space-y-5" noValidate onSubmit={handleSubmit(onSubmit)}>
-        <div className="space-y-2">
+      <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+        <div>
           <label
-            htmlFor="reset-password"
-            className="block text-sm font-semibold"
+            className="mb-2 block text-sm font-semibold text-foreground"
+            htmlFor="reset-password-new-password"
           >
             {t("passwordLabel")}
           </label>
-
           <div className="relative">
             <Input
-              id="reset-password"
-              type={showPassword ? "text" : "password"}
+              id="reset-password-new-password"
               autoComplete="new-password"
               placeholder={t("passwordPlaceholder")}
-              className="pe-12"
-              {...register("password")}
+              type={showPassword ? "text" : "password"}
+              {...register("newPassword")}
+              className="h-12 bg-card"
             />
-
             <button
               type="button"
-              onClick={() => setShowPassword((value) => !value)}
               className="absolute inset-y-0 end-3 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
               aria-label={showPassword ? t("hidePassword") : t("showPassword")}
+              onClick={() => setShowPassword((value) => !value)}
             >
               {showPassword ? (
                 <EyeOff className="size-4" />
@@ -89,41 +137,34 @@ export function ResetPasswordForm() {
               )}
             </button>
           </div>
-
-          {errors.password && (
-            <p className="text-sm text-destructive">
-              {errors.password.message}
-            </p>
-          )}
+          <FieldError message={errors.newPassword?.message} />
         </div>
 
-        <div className="space-y-2">
+        <div>
           <label
-            htmlFor="reset-confirm-password"
-            className="block text-sm font-semibold"
+            className="mb-2 block text-sm font-semibold text-foreground"
+            htmlFor="reset-password-confirm-password"
           >
             {t("confirmPasswordLabel")}
           </label>
-
           <div className="relative">
             <Input
-              id="reset-confirm-password"
-              type={showConfirmPassword ? "text" : "password"}
+              id="reset-password-confirm-password"
               autoComplete="new-password"
               placeholder={t("confirmPasswordPlaceholder")}
-              className="pe-12"
+              type={showConfirmPassword ? "text" : "password"}
               {...register("confirmPassword")}
+              className="h-12 bg-card"
             />
-
             <button
               type="button"
-              onClick={() => setShowConfirmPassword((value) => !value)}
-              className="absolute inset-y-0 end-3 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
+              className="absolute inset-y-0 end-3 inline-flex items-center text-muted-foreground transition-colors  hover:text-foreground"
               aria-label={
                 showConfirmPassword
                   ? t("hideConfirmPassword")
                   : t("showConfirmPassword")
               }
+              onClick={() => setShowConfirmPassword((value) => !value)}
             >
               {showConfirmPassword ? (
                 <EyeOff className="size-4" />
@@ -132,32 +173,27 @@ export function ResetPasswordForm() {
               )}
             </button>
           </div>
-
-          {errors.confirmPassword && (
-            <p className="text-sm text-destructive">
-              {errors.confirmPassword.message}
-            </p>
-          )}
+          <FieldError message={errors.confirmPassword?.message} />
         </div>
 
         <Button
-          type="submit"
-          className="h-12 w-full rounded-full text-base font-semibold cursor-pointer"
+          className="h-11 w-full rounded-full text-base font-semibold cursor-pointer"
           disabled={isSubmitting}
+          type="submit"
         >
           {isSubmitting ? t("loading") : t("submit")}
         </Button>
-
-        <p className="text-center text-sm text-muted-foreground">
-          {t("footerText")}{" "}
-          <Link
-            href={`/${locale}/login`}
-            className="font-semibold text-primary hover:underline"
-          >
-            {t("footerLink")}
-          </Link>
-        </p>
       </form>
+
+      <p className="text-center text-sm text-muted-foreground">
+        {t("footerText")}{" "}
+        <Link
+          className="font-semibold text-primary transition-colors hover:text-primary/80"
+          href={`/${locale}/login`}
+        >
+          {t("footerLink")}
+        </Link>
+      </p>
     </div>
   );
 }

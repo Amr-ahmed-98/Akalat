@@ -25,7 +25,6 @@
       "passwordLabel": "كلمة المرور",
       "passwordPlaceholder": "••••••••",
       "forgotPassword": "نسيت كلمة المرور؟",
-      "rememberMe": "تذكر هذا الجهاز",
       "submit": "تسجيل الدخول",
       "loading": "جارٍ تسجيل الدخول...",
       "divider": "أو",
@@ -33,25 +32,29 @@
       "footerText": "ليس لديك حساب؟",
       "footerLink": "أنشئ حساباً",
       "showPassword": "إظهار كلمة المرور",
-      "hidePassword": "إخفاء كلمة المرور"
+      "hidePassword": "إخفاء كلمة المرور",
+      "fallbackError": "تعذر إكمال تسجيل الدخول حالياً."
     },
     "register": {
-      "googleConnectedNotice": "تم ربط حساب Google. أكمل الآن تخصيص ملفك الغذائي والطهي.",
+      "googleConnectedNotice": "تم ربط حساب Google. أكمل الخطوات المتبقية لإنشاء حسابك.",
+      "googleMissingToken": "انتهت صلاحية التحقق عبر Google. ابدأ من الخطوة الأولى مرة أخرى.",
       "divider": "أو",
       "privacyCaption": "بياناتك محمية وتُستخدم فقط لتخصيص تجربتك.",
+      "fallbackError": "تعذر إكمال التسجيل حالياً.",
       "actions": {
         "back": "رجوع",
         "continue": "متابعة",
-        "finish": "تم",
+        "finish": "إنشاء الحساب",
         "loading": "جارٍ الحفظ...",
-        "google": "المتابعة بواسطة جوجل"
+        "google": "المتابعة بواسطة جوجل",
+        "useEmail": "استخدم البريد الإلكتروني بدلاً من ذلك"
       },
       "footer": {
         "haveAccount": "لديك حساب بالفعل؟",
         "login": "تسجيل الدخول"
       },
       "fields": {
-        "fullName": {
+        "name": {
           "label": "الاسم الكامل",
           "placeholder": "أليكس خبير الطهي"
         },
@@ -64,6 +67,12 @@
           "placeholder": "••••••••",
           "show": "إظهار كلمة المرور",
           "hide": "إخفاء كلمة المرور"
+        },
+        "confirmPassword": {
+          "label": "تأكيد كلمة المرور",
+          "placeholder": "••••••••",
+          "show": "إظهار تأكيد كلمة المرور",
+          "hide": "إخفاء تأكيد كلمة المرور"
         }
       },
       "steps": {
@@ -109,7 +118,11 @@
         },
         "tools": {
           "title": "أدوات المطبخ المتوفرة",
-          "description": "اختر الأدوات الموجودة لديك حتى تبقى الوصفات واقعية بالنسبة لك."
+          "description": "اختر الأدوات الموجودة لديك حتى تبقى الوصفات واقعية بالنسبة لك.",
+          "otherTitle": "أدوات مطبخ أخرى",
+          "otherDescription": "أضف أي أدوات إضافية غير موجودة في القائمة الرئيسية.",
+          "otherPlaceholder": "مثال: طباخة أرز",
+          "addOtherTool": "إضافة أداة"
         },
         "goals": {
           "title": "هدفك الأساسي من الطهي",
@@ -118,12 +131,11 @@
       },
       "options": {
         "dietary": {
-          "none": "بدون قيود",
           "keto": "كيتو",
           "vegan": "نباتي",
           "vegetarian": "نباتي مع الألبان",
-          "lowCarb": "منخفض الكربوهيدرات",
-          "paleo": "باليو"
+          "paleo": "باليو",
+          "low-carb": "منخفض الكربوهيدرات"
         },
         "cuisines": {
           "arabic": "عربي",
@@ -134,59 +146,66 @@
         "familyTypes": {
           "single": "فرد واحد",
           "couple": "زوجان",
-          "largeFamily": "عائلة كبيرة"
+          "family": "عائلة"
         },
         "levels": {
           "beginner": "مبتدئ",
           "intermediate": "متوسط",
-          "advanced": "محترف"
+          "professional": "محترف"
         },
         "levelDescriptions": {
           "beginner": "وصفات بسيطة وسريعة",
           "intermediate": "توازن بين الطعم والسرعة",
-          "advanced": "تقنيات متقدمة ووصفات معقدة"
+          "professional": "تقنيات متقدمة ووصفات معقدة"
         },
         "tools": {
           "oven": "فرن",
-          "airFryer": "قلاية هوائية",
+          "air-fryer": "قلاية هوائية",
+          "pressure-cooker": "قدر ضغط",
           "blender": "خلاط",
-          "pressureCooker": "قدر ضغط",
-          "knifeSet": "طقم سكاكين",
+          "hand-blender": "خلاط يدوي",
           "pot": "قدر طبخ",
-          "grill": "شواية",
-          "other": "أخرى"
+          "microwave": "ميكروويف",
+          "stand-mixer": "عجانة ثابتة"
         },
         "goals": {
-          "saveTime": "توفير الوقت",
-          "eatHealthier": "أكل صحي أكثر",
-          "learnSkills": "تعلم مهارات جديدة",
-          "saveMoney": "توفير المال"
+          "save-time": "توفير الوقت",
+          "healthy-eating": "أكل صحي",
+          "learn-skills": "تعلم مهارات جديدة",
+          "save-money": "توفير المال"
         }
       }
     },
     "forgotPassword": {
       "eyebrow": "استعادة الحساب",
       "title": "نسيت كلمة المرور؟",
-      "description": "أدخل بريدك الإلكتروني وسنرسل لك رابط استعادة الحساب.",
+      "description": "أدخل بريدك الإلكتروني وسنبدأ خطوات إعادة تعيين كلمة المرور.",
       "emailLabel": "البريد الإلكتروني",
       "emailPlaceholder": "example@foodai.com",
-      "submit": "أرسل رابط الاستعادة",
+      "submit": "متابعة",
       "loading": "جارٍ الإرسال...",
-      "backToLogin": "العودة لتسجيل الدخول"
+      "backToLogin": "العودة لتسجيل الدخول",
+      "fallbackError": "تعذر بدء عملية إعادة التعيين حالياً."
     },
     "otp": {
       "eyebrow": "رمز التحقق",
-      "title": "نسيت كلمة المرور؟",
-      "description": "ادخل رمز التحقق لاسترداد كلمة السر",
+      "verifyEmailTitle": "تحقق من بريدك الإلكتروني",
+      "verifyEmailDescription": "أدخل الرمز المكوّن من 6 أرقام لإكمال إنشاء حسابك.",
+      "forgotPasswordTitle": "تحقق من بريدك",
+      "forgotPasswordDescription": "أدخل الرمز المكوّن من 6 أرقام لمتابعة إعادة تعيين كلمة المرور.",
       "digit": "الخانة",
-      "submit": "اكمل",
+      "submit": "تأكيد الرمز",
       "loading": "جارٍ التحقق...",
-      "invalid": "يرجى إدخال رمز تحقق صحيح مكوّن من 4 أرقام.",
-      "backToLogin": "العودة لتسجيل الدخول"
+      "invalid": "يرجى إدخال رمز صحيح مكوّن من 6 أرقام.",
+      "resend": "إعادة إرسال الرمز",
+      "resending": "جارٍ إعادة الإرسال...",
+      "resendIn": "إعادة الإرسال خلال {seconds}ث",
+      "backToLogin": "العودة لتسجيل الدخول",
+      "fallbackError": "تعذر التحقق من الرمز حالياً."
     },
     "resetPassword": {
       "eyebrow": "تأمين الحساب",
-      "title": "تغيير كلمة المرور",
+      "title": "إعادة تعيين كلمة المرور",
       "description": "اختر كلمة مرور جديدة وقوية لحسابك.",
       "passwordLabel": "كلمة المرور الجديدة",
       "passwordPlaceholder": "••••••••",
@@ -199,7 +218,9 @@
       "showPassword": "إظهار كلمة المرور",
       "hidePassword": "إخفاء كلمة المرور",
       "showConfirmPassword": "إظهار تأكيد كلمة المرور",
-      "hideConfirmPassword": "إخفاء تأكيد كلمة المرور"
+      "hideConfirmPassword": "إخفاء تأكيد كلمة المرور",
+      "missingToken": "رمز إعادة التعيين غير موجود. ابدأ الخطوات من جديد.",
+      "fallbackError": "تعذر إعادة تعيين كلمة المرور حالياً."
     },
     "validation": {
       "emailRequired": "البريد الإلكتروني مطلوب.",
@@ -220,8 +241,9 @@
       "familyTypeRequired": "اختر نوع الأسرة.",
       "goalRequired": "اختر هدفك الأساسي.",
       "toolsRequired": "اختر أداة مطبخ واحدة على الأقل.",
+      "otherToolsMax": "يمكنك إضافة 10 أدوات إضافية كحد أقصى.",
       "otpRequired": "رمز التحقق مطلوب.",
-      "otpLength": "يجب أن يتكون رمز التحقق من 4 أرقام.",
+      "otpLength": "يجب أن يتكون رمز التحقق من 6 أرقام.",
       "otpDigits": "يجب أن يحتوي رمز التحقق على أرقام فقط."
     }
   }

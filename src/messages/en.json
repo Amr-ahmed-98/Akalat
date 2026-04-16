@@ -25,7 +25,6 @@
       "passwordLabel": "Password",
       "passwordPlaceholder": "••••••••",
       "forgotPassword": "Forgot password?",
-      "rememberMe": "Remember this device",
       "submit": "Login",
       "loading": "Logging in...",
       "divider": "or",
@@ -33,25 +32,29 @@
       "footerText": "Don’t have an account?",
       "footerLink": "Create one",
       "showPassword": "Show password",
-      "hidePassword": "Hide password"
+      "hidePassword": "Hide password",
+      "fallbackError": "Unable to complete login right now."
     },
     "register": {
-      "googleConnectedNotice": "Google account connected. Continue customizing your cooking profile.",
+      "googleConnectedNotice": "Google account connected. Finish the remaining steps to create your account.",
+      "googleMissingToken": "Google verification expired. Start again from step one.",
       "divider": "or",
       "privacyCaption": "Your data stays protected and is only used to personalize your experience.",
+      "fallbackError": "Unable to complete registration right now.",
       "actions": {
         "back": "Back",
         "continue": "Continue",
-        "finish": "Done",
+        "finish": "Create account",
         "loading": "Saving...",
-        "google": "Continue with Google"
+        "google": "Continue with Google",
+        "useEmail": "Use email instead"
       },
       "footer": {
         "haveAccount": "Already have an account?",
         "login": "Login"
       },
       "fields": {
-        "fullName": {
+        "name": {
           "label": "Full name",
           "placeholder": "Alex Chef"
         },
@@ -64,6 +67,12 @@
           "placeholder": "••••••••",
           "show": "Show password",
           "hide": "Hide password"
+        },
+        "confirmPassword": {
+          "label": "Confirm password",
+          "placeholder": "••••••••",
+          "show": "Show confirm password",
+          "hide": "Hide confirm password"
         }
       },
       "steps": {
@@ -80,7 +89,7 @@
         "step3": {
           "eyebrow": "Step 3 of 3",
           "title": "Build your cooking profile",
-          "description": "Help the AI understand your cooking level, home setup and kitchen tools."
+          "description": "Help the AI understand your cooking level, household setup and kitchen tools."
         }
       },
       "sections": {
@@ -109,7 +118,11 @@
         },
         "tools": {
           "title": "Available kitchen tools",
-          "description": "Select the tools you already have so recipes stay realistic."
+          "description": "Select the tools you already have so recipes stay realistic.",
+          "otherTitle": "Other kitchen tools",
+          "otherDescription": "Add any extra tools that are not in the main list.",
+          "otherPlaceholder": "e.g. rice cooker",
+          "addOtherTool": "Add tool"
         },
         "goals": {
           "title": "Primary cooking goal",
@@ -118,12 +131,11 @@
       },
       "options": {
         "dietary": {
-          "none": "No restrictions",
           "keto": "Keto",
           "vegan": "Vegan",
           "vegetarian": "Vegetarian",
-          "lowCarb": "Low carb",
-          "paleo": "Paleo"
+          "paleo": "Paleo",
+          "low-carb": "Low carb"
         },
         "cuisines": {
           "arabic": "Arabic",
@@ -134,55 +146,62 @@
         "familyTypes": {
           "single": "Single",
           "couple": "Couple",
-          "largeFamily": "Large family"
+          "family": "Family"
         },
         "levels": {
           "beginner": "Beginner",
           "intermediate": "Intermediate",
-          "advanced": "Advanced"
+          "professional": "Professional"
         },
         "levelDescriptions": {
           "beginner": "Simple and quick recipes",
           "intermediate": "Balanced flavor and speed",
-          "advanced": "Complex techniques and layered dishes"
+          "professional": "Advanced techniques and layered dishes"
         },
         "tools": {
           "oven": "Oven",
-          "airFryer": "Air fryer",
+          "air-fryer": "Air fryer",
+          "pressure-cooker": "Pressure cooker",
           "blender": "Blender",
-          "pressureCooker": "Pressure cooker",
-          "knifeSet": "Knife set",
+          "hand-blender": "Hand blender",
           "pot": "Cooking pot",
-          "grill": "Grill",
-          "other": "Other"
+          "microwave": "Microwave",
+          "stand-mixer": "Stand mixer"
         },
         "goals": {
-          "saveTime": "Save time",
-          "eatHealthier": "Eat healthier",
-          "learnSkills": "Learn new skills",
-          "saveMoney": "Save money"
+          "save-time": "Save time",
+          "healthy-eating": "Healthy eating",
+          "learn-skills": "Learn new skills",
+          "save-money": "Save money"
         }
       }
     },
     "forgotPassword": {
       "eyebrow": "Account recovery",
       "title": "Forgot your password?",
-      "description": "Enter your email and we’ll send you a recovery link.",
+      "description": "Enter your email and we’ll start the password reset flow.",
       "emailLabel": "Email address",
       "emailPlaceholder": "example@foodai.com",
-      "submit": "Send recovery link",
+      "submit": "Continue",
       "loading": "Sending...",
-      "backToLogin": "Back to login"
+      "backToLogin": "Back to login",
+      "fallbackError": "Unable to start the reset flow right now."
     },
     "otp": {
       "eyebrow": "Verification code",
-      "title": "Forgot your password?",
-      "description": "Enter the verification code to recover your password.",
+      "verifyEmailTitle": "Verify your email",
+      "verifyEmailDescription": "Enter the 6-digit code we sent to finish creating your account.",
+      "forgotPasswordTitle": "Check your email",
+      "forgotPasswordDescription": "Enter the 6-digit code to continue resetting your password.",
       "digit": "Digit",
-      "submit": "Complete",
+      "submit": "Verify code",
       "loading": "Checking...",
-      "invalid": "Please enter a valid 4-digit code.",
-      "backToLogin": "Back to login"
+      "invalid": "Please enter a valid 6-digit code.",
+      "resend": "Resend code",
+      "resending": "Resending...",
+      "resendIn": "Resend in {seconds}s",
+      "backToLogin": "Back to login",
+      "fallbackError": "Unable to verify the code right now."
     },
     "resetPassword": {
       "eyebrow": "Secure your account",
@@ -199,7 +218,9 @@
       "showPassword": "Show password",
       "hidePassword": "Hide password",
       "showConfirmPassword": "Show confirm password",
-      "hideConfirmPassword": "Hide confirm password"
+      "hideConfirmPassword": "Hide confirm password",
+      "missingToken": "Reset token is missing. Start the flow again.",
+      "fallbackError": "Unable to reset the password right now."
     },
     "validation": {
       "emailRequired": "Email is required.",
@@ -220,8 +241,9 @@
       "familyTypeRequired": "Choose your household type.",
       "goalRequired": "Choose your main goal.",
       "toolsRequired": "Select at least one kitchen tool.",
+      "otherToolsMax": "You can add up to 10 extra tools only.",
       "otpRequired": "Verification code is required.",
-      "otpLength": "The verification code must be 4 digits.",
+      "otpLength": "The verification code must be 6 digits.",
       "otpDigits": "The verification code must contain numbers only."
     }
   }

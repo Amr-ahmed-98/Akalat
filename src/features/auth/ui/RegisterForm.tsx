@@ -30,52 +30,67 @@ import {
   type LucideIcon,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { useEffect, useState, type ReactNode } from "react";
 import { type FieldPath, useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { type ZodIssue } from "zod";
 
+import { cn } from "@/src/shared/lib/utils";
 import { Button } from "@/src/shared/ui/button";
 import { Input } from "@/src/shared/ui/input";
-import { cn } from "@/src/shared/lib/utils";
 import { AuthOptionCard } from "./AuthOptionCard";
 import { GoogleAuthButton } from "./GoogleAuthButton";
 import {
-  COOKING_LEVELS,
+  authenticateWithGoogle,
+  getApiErrorMessage,
+  registerUser,
+} from "../model/auth-api";
+import {
+  COOKING_SKILL_LEVELS,
   CUISINES,
   DIETARY_PREFERENCES,
-  FAMILY_TYPES,
-  GOALS,
-  TOOLS,
+  HOUSEHOLD_TYPES,
+  KITCHEN_TOOLS,
+  PRIMARY_COOKING_GOALS,
 } from "../model/register-options";
+import {
+  beginEmailVerificationFlow,
+  beginGoogleRegisterFlow,
+  clearRegisterFlowState,
+  ensureRegisterFlowState,
+  getRegisterFlowState,
+  mapBackendOnboardingStepToRegisterStep,
+  resetRegisterFlowToCredentials,
+  setRegisterFlowStep,
+  type RegisterStep,
+} from "../model/flow-state";
 import {
   createRegisterAccountSchema,
   createRegisterKitchenSchema,
   createRegisterPreferencesSchema,
   createRegisterSchema,
+  defaultRegisterFormValues,
+  toCookingProfileInput,
   type RegisterFormData,
 } from "../model/schema";
+import type {
+  DecodedGoogleProfile,
+  GoogleCredentialResponse,
+} from "../model/google";
 
-type Step = 1 | 2 | 3;
-
-const defaultValues: RegisterFormData = {
-  fullName: "",
-  email: "",
-  password: "",
-  authProvider: "credentials",
-  dietaryPreferences: [],
-  favoriteCuisines: [],
-  allergies: [],
-  cookingLevel: "",
-  familyType: "",
-  primaryGoal: "",
-  availableTools: [],
-};
+type Step = RegisterStep;
 
 const stepFields: Record<Step, FieldPath<RegisterFormData>[]> = {
-  1: ["fullName", "email", "password"],
+  1: ["name", "email", "password", "confirmPassword", "authProvider"],
   2: ["dietaryPreferences", "favoriteCuisines", "allergies"],
-  3: ["cookingLevel", "familyType", "primaryGoal", "availableTools"],
+  3: [
+    "householdType",
+    "cookingSkillLevel",
+    "primaryCookingGoal",
+    "availableKitchenTools",
+    "otherKitchenTools",
+  ],
 };
 
 const motionProps = {
@@ -95,43 +110,58 @@ const CUISINE_ICONS: Record<string, LucideIcon> = {
 const FAMILY_ICONS: Record<string, LucideIcon> = {
   single: User,
   couple: Heart,
-  largeFamily: Users,
+  family: Users,
 };
 
 const LEVEL_ICONS: Record<string, LucideIcon> = {
   beginner: Sparkles,
   intermediate: ChefHat,
-  advanced: Flame,
+  professional: Flame,
 };
 
 const TOOL_ICONS: Record<string, LucideIcon> = {
   oven: CookingPot,
-  airFryer: Wind,
+  "air-fryer": Wind,
   blender: Sparkles,
-  pressureCooker: Timer,
-  knifeSet: UtensilsCrossed,
+  "pressure-cooker": Timer,
+  "hand-blender": Sparkles,
   pot: Soup,
-  grill: Flame,
-  other: ChefHat,
+  microwave: Timer,
+  "stand-mixer": ChefHat,
 };
 
 const GOAL_ICONS: Record<string, LucideIcon> = {
-  saveTime: Clock3,
-  eatHealthier: HeartPulse,
-  learnSkills: GraduationCap,
-  saveMoney: Wallet,
+  "save-time": Clock3,
+  "healthy-eating": HeartPulse,
+  "learn-skills": GraduationCap,
+  "save-money": Wallet,
 };
+
+function firstIssueStep(issues: readonly ZodIssue[]): Step {
+  const firstField = String(issues[0]?.path?.[0] ?? "");
+
+  if (stepFields[1].includes(firstField as FieldPath<RegisterFormData>)) {
+    return 1;
+  }
+
+  if (stepFields[2].includes(firstField as FieldPath<RegisterFormData>)) {
+    return 2;
+  }
+
+  return 3;
+}
 
 export function RegisterForm() {
   const t = useTranslations("Auth.register");
   const tValidation = useTranslations("Auth.validation");
   const locale = useLocale();
   const router = useRouter();
-  const searchParams = useSearchParams();
 
   const [step, setStep] = useState<Step>(1);
   const [allergyInput, setAllergyInput] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
 
   const {
     register,
@@ -143,33 +173,47 @@ export function RegisterForm() {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
-    defaultValues,
+    defaultValues: defaultRegisterFormValues,
     mode: "onBlur",
   });
 
   useEffect(() => {
-    const provider = searchParams.get("provider");
-    const requestedStep = searchParams.get("step");
+    const existingFlow = getRegisterFlowState();
 
-    if (provider === "google") {
-      setValue("authProvider", "google");
-      setStep(requestedStep === "3" ? 3 : 2);
+    if (!existingFlow) {
+      ensureRegisterFlowState("credentials");
       return;
     }
 
-    if (requestedStep === "2" || requestedStep === "3") {
-      setStep(requestedStep === "3" ? 3 : 2);
+    if (existingFlow.provider === "google") {
+      if (!existingFlow.googleIdToken) {
+        resetRegisterFlowToCredentials();
+        setValue("authProvider", "credentials");
+        setStep(1);
+        return;
+      }
+
+      const googleStep: Step = existingFlow.currentStep === 3 ? 3 : 2;
+      setValue("authProvider", "google");
+      setValue("name", existingFlow.googleName ?? "");
+      setValue("email", existingFlow.googleEmail ?? "");
+      setStep(googleStep);
+      return;
     }
-  }, [searchParams, setValue]);
+
+    setValue("authProvider", "credentials");
+    setStep(existingFlow.currentStep);
+  }, [setValue]);
 
   const isGoogleFlow = watch("authProvider") === "google";
   const dietaryPreferences = watch("dietaryPreferences");
   const favoriteCuisines = watch("favoriteCuisines");
   const allergies = watch("allergies");
-  const cookingLevel = watch("cookingLevel");
-  const familyType = watch("familyType");
-  const primaryGoal = watch("primaryGoal");
-  const availableTools = watch("availableTools");
+  const cookingLevel = watch("cookingSkillLevel");
+  const familyType = watch("householdType");
+  const primaryGoal = watch("primaryCookingGoal");
+  const availableTools = watch("availableKitchenTools");
+  const emailValue = watch("email");
 
   const applyIssues = (issues: readonly ZodIssue[]) => {
     issues.forEach((issue) => {
@@ -184,20 +228,25 @@ export function RegisterForm() {
     });
   };
 
+  const updateStep = (nextStep: Step) => {
+    setStep(nextStep);
+    setRegisterFlowStep(nextStep);
+  };
+
   const validateStep = (currentStep: Step) => {
     clearErrors(stepFields[currentStep]);
 
     const values = getValues();
 
     if (currentStep === 1) {
-      if (values.authProvider === "google") {
-        return true;
-      }
-
-      const result = createRegisterAccountSchema(tValidation).safeParse({
-        fullName: values.fullName,
+      const result = createRegisterAccountSchema(
+        tValidation,
+        values.authProvider,
+      ).safeParse({
+        name: values.name,
         email: values.email,
         password: values.password,
+        confirmPassword: values.confirmPassword,
         authProvider: values.authProvider,
       });
 
@@ -225,10 +274,11 @@ export function RegisterForm() {
     }
 
     const result = createRegisterKitchenSchema(tValidation).safeParse({
-      cookingLevel: values.cookingLevel,
-      familyType: values.familyType,
-      primaryGoal: values.primaryGoal,
-      availableTools: values.availableTools,
+      householdType: values.householdType,
+      cookingSkillLevel: values.cookingSkillLevel,
+      primaryCookingGoal: values.primaryCookingGoal,
+      availableKitchenTools: values.availableKitchenTools,
+      otherKitchenTools: values.otherKitchenTools,
     });
 
     if (!result.success) {
@@ -239,31 +289,60 @@ export function RegisterForm() {
     return true;
   };
 
-  const handleGoogleFlow = () => {
-    setValue("authProvider", "google", {
+  const switchToEmailRegistration = () => {
+    resetRegisterFlowToCredentials();
+    setValue("authProvider", "credentials", {
       shouldDirty: true,
       shouldTouch: true,
     });
+    setValue("password", "");
+    setValue("confirmPassword", "");
+    setStep(1);
+  };
 
-    setStep(2);
-    router.replace(`/${locale}/register?provider=google&step=2`, {
-      scroll: false,
-    });
+  const handleGoogleCredential = async (
+    response: GoogleCredentialResponse,
+    profile: DecodedGoogleProfile | null,
+  ) => {
+    setIsGoogleSubmitting(true);
+
+    try {
+      const googleName = profile?.name ?? getValues("name") ?? "";
+      const googleEmail = profile?.email ?? "";
+
+      setValue("authProvider", "google", {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+      setValue("name", googleName, {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+      setValue("email", googleEmail, {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+
+      beginGoogleRegisterFlow({
+        googleIdToken: response.credential,
+        googleName,
+        googleEmail,
+        step: 2,
+      });
+
+      clearErrors(stepFields[1]);
+      setStep(2);
+      toast.success(t("googleConnectedNotice"));
+    } finally {
+      setIsGoogleSubmitting(false);
+    }
   };
 
   const toggleDietaryPreference = (value: string) => {
     const current = getValues("dietaryPreferences");
-    const hasValue = current.includes(value);
-
-    let next: string[];
-
-    if (value === "none") {
-      next = hasValue ? current.filter((item) => item !== value) : ["none"];
-    } else if (hasValue) {
-      next = current.filter((item) => item !== value);
-    } else {
-      next = [...current.filter((item) => item !== "none"), value];
-    }
+    const next = current.includes(value as (typeof current)[number])
+      ? current.filter((item) => item !== value)
+      : [...current, value as (typeof current)[number]];
 
     setValue("dietaryPreferences", next, {
       shouldDirty: true,
@@ -273,34 +352,99 @@ export function RegisterForm() {
     clearErrors("dietaryPreferences");
   };
 
-  const toggleMultiValue = (
-    field: "favoriteCuisines" | "availableTools",
-    value: string,
-  ) => {
-    const current = getValues(field);
-    const next = current.includes(value)
-      ? current.filter((item) => item !== value)
-      : [...current, value];
+  function toggleMultiValue(
+    field: "favoriteCuisines",
+    value: RegisterFormData["favoriteCuisines"][number],
+  ): void;
+  function toggleMultiValue(
+    field: "availableKitchenTools",
+    value: RegisterFormData["availableKitchenTools"][number],
+  ): void;
+  function toggleMultiValue(
+    field: "favoriteCuisines" | "availableKitchenTools",
+    value:
+      | RegisterFormData["favoriteCuisines"][number]
+      | RegisterFormData["availableKitchenTools"][number],
+  ) {
+    if (field === "favoriteCuisines") {
+      const current = getValues("favoriteCuisines");
+      const typedValue = value as RegisterFormData["favoriteCuisines"][number];
+      const next = current.includes(typedValue)
+        ? current.filter((item) => item !== typedValue)
+        : [...current, typedValue];
 
-    setValue(field, next, {
+      setValue("favoriteCuisines", next, {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+      clearErrors("favoriteCuisines");
+      return;
+    }
+
+    const current = getValues("availableKitchenTools");
+    const typedValue = value as RegisterFormData["availableKitchenTools"][number];
+    const next = current.includes(typedValue)
+      ? current.filter((item) => item !== typedValue)
+      : [...current, typedValue];
+
+    setValue("availableKitchenTools", next, {
       shouldDirty: true,
       shouldTouch: true,
     });
+    clearErrors("availableKitchenTools");
+  }
 
-    clearErrors(field);
-  };
+  function selectSingleValue(
+    field: "cookingSkillLevel",
+    value: Exclude<RegisterFormData["cookingSkillLevel"], "">,
+  ): void;
+  function selectSingleValue(
+    field: "householdType",
+    value: Exclude<RegisterFormData["householdType"], "">,
+  ): void;
+  function selectSingleValue(
+    field: "primaryCookingGoal",
+    value: Exclude<RegisterFormData["primaryCookingGoal"], "">,
+  ): void;
+  function selectSingleValue(
+    field: "cookingSkillLevel" | "householdType" | "primaryCookingGoal",
+    value:
+      | Exclude<RegisterFormData["cookingSkillLevel"], "">
+      | Exclude<RegisterFormData["householdType"], "">
+      | Exclude<RegisterFormData["primaryCookingGoal"], "">,
+  ) {
+    if (field === "cookingSkillLevel") {
+      setValue(
+        "cookingSkillLevel",
+        value as RegisterFormData["cookingSkillLevel"],
+        {
+          shouldDirty: true,
+          shouldTouch: true,
+        },
+      );
+      clearErrors("cookingSkillLevel");
+      return;
+    }
 
-  const selectSingleValue = (
-    field: "cookingLevel" | "familyType" | "primaryGoal",
-    value: string,
-  ) => {
-    setValue(field, value, {
-      shouldDirty: true,
-      shouldTouch: true,
-    });
+    if (field === "householdType") {
+      setValue("householdType", value as RegisterFormData["householdType"], {
+        shouldDirty: true,
+        shouldTouch: true,
+      });
+      clearErrors("householdType");
+      return;
+    }
 
-    clearErrors(field);
-  };
+    setValue(
+      "primaryCookingGoal",
+      value as RegisterFormData["primaryCookingGoal"],
+      {
+        shouldDirty: true,
+        shouldTouch: true,
+      },
+    );
+    clearErrors("primaryCookingGoal");
+  }
 
   const addAllergy = () => {
     const trimmed = allergyInput.trim();
@@ -332,7 +476,22 @@ export function RegisterForm() {
     );
   };
 
-  const handleFinalSubmit = handleSubmit((values) => {
+  const handleBack = () => {
+    if (step === 1) {
+      return;
+    }
+
+    const previousStep = (step - 1) as Step;
+
+    if (previousStep === 1 && isGoogleFlow) {
+      switchToEmailRegistration();
+      return;
+    }
+
+    updateStep(previousStep);
+  };
+
+  const handleFinalSubmit = handleSubmit(async (values) => {
     clearErrors();
 
     const result = createRegisterSchema(
@@ -342,31 +501,86 @@ export function RegisterForm() {
 
     if (!result.success) {
       applyIssues(result.error.issues);
-
-      const fields = result.error.issues.map((issue) => issue.path[0]);
-
-      if (
-        fields.some((field) =>
-          ["fullName", "email", "password"].includes(String(field)),
-        )
-      ) {
-        setStep(1);
-      } else if (
-        fields.some((field) =>
-          ["dietaryPreferences", "favoriteCuisines", "allergies"].includes(
-            String(field),
-          ),
-        )
-      ) {
-        setStep(2);
-      } else {
-        setStep(3);
-      }
-
+      const issueStep = firstIssueStep(result.error.issues);
+      setStep(issueStep);
+      setRegisterFlowStep(issueStep);
       return;
     }
 
-    console.log("register payload", result.data);
+    const cookingProfile = toCookingProfileInput(result.data);
+
+    try {
+      if (result.data.authProvider === "google") {
+        const registerFlow = getRegisterFlowState();
+        const googleIdToken = registerFlow?.googleIdToken;
+
+        if (!googleIdToken) {
+          toast.error(t("googleMissingToken"));
+          switchToEmailRegistration();
+          return;
+        }
+
+        const payload = await authenticateWithGoogle({
+          idToken: googleIdToken,
+          name: result.data.name,
+          cookingProfile,
+          profileCompleted: true,
+          currentOnboardingStep: 0,
+        });
+
+        if (
+          !(
+            payload.user.profileCompleted &&
+            payload.user.currentOnboardingStep === 0
+          )
+        ) {
+          beginGoogleRegisterFlow({
+            googleIdToken,
+            googleName: result.data.name,
+            googleEmail: registerFlow?.googleEmail ?? result.data.email,
+            step: mapBackendOnboardingStepToRegisterStep(
+              payload.user.currentOnboardingStep,
+            ),
+          });
+          router.replace(`/${locale}/register`);
+          return;
+        }
+
+        clearRegisterFlowState();
+        router.replace(`/${locale}`);
+        return;
+      }
+
+      const payload = await registerUser({
+        name: result.data.name,
+        email: result.data.email,
+        password: result.data.password,
+        confirmPassword: result.data.confirmPassword,
+        cookingProfile,
+      });
+
+      clearRegisterFlowState();
+      toast.success(payload.message);
+
+      if (payload.emailVerificationRequired || !payload.user.isEmailVerified) {
+        beginEmailVerificationFlow({
+          email: result.data.email,
+          verificationOtp: payload.verificationOtp,
+          verificationUrl: payload.verificationUrl,
+        });
+
+        const otpQuery = payload.verificationOtp
+          ? `?otp=${encodeURIComponent(payload.verificationOtp)}`
+          : "";
+
+        router.replace(`/${locale}/otp${otpQuery}`);
+        return;
+      }
+
+      router.replace(`/${locale}/login`);
+    } catch (error) {
+      toast.error(getApiErrorMessage(error, t("fallbackError")));
+    }
   });
 
   const stepTranslationKey =
@@ -393,7 +607,10 @@ export function RegisterForm() {
 
         {isGoogleFlow && step > 1 && (
           <div className="rounded-2xl border border-primary/20 bg-primary/5 px-4 py-3 text-sm">
-            {t("googleConnectedNotice")}
+            <p>{t("googleConnectedNotice")}</p>
+            {emailValue ? (
+              <p className="mt-1 text-muted-foreground">{emailValue}</p>
+            ) : null}
           </div>
         )}
       </div>
@@ -401,27 +618,31 @@ export function RegisterForm() {
       <form className="space-y-5" noValidate onSubmit={handleFinalSubmit}>
         <AnimatePresence mode="wait" initial={false}>
           {step === 1 && (
-            <motion.div key="step-1" {...motionProps} className="space-y-5">
+            <motion.div
+              key={`step-1-${locale}`}
+              {...motionProps}
+              className="space-y-5"
+            >
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="space-y-2 sm:col-span-2">
                   <label
                     htmlFor="register-name"
                     className="block text-sm font-semibold"
                   >
-                    {t("fields.fullName.label")}
+                    {t("fields.name.label")}
                   </label>
 
                   <Input
                     id="register-name"
                     autoComplete="name"
-                    placeholder={t("fields.fullName.placeholder")}
-                    {...register("fullName")}
+                    placeholder={t("fields.name.placeholder")}
+                    {...register("name")}
                     className="h-12 bg-card"
                   />
 
-                  {errors.fullName && (
+                  {errors.name && (
                     <p className="text-sm text-destructive">
-                      {errors.fullName.message}
+                      {errors.name.message}
                     </p>
                   )}
                 </div>
@@ -464,7 +685,7 @@ export function RegisterForm() {
                       type={showPassword ? "text" : "password"}
                       autoComplete="new-password"
                       placeholder={t("fields.password.placeholder")}
-                      className="pe-12 h-12 bg-card"
+                      className="h-12 bg-card pe-12"
                       {...register("password")}
                     />
 
@@ -492,14 +713,58 @@ export function RegisterForm() {
                     </p>
                   )}
                 </div>
+
+                <div className="space-y-2 sm:col-span-2">
+                  <label
+                    htmlFor="register-confirm-password"
+                    className="block text-sm font-semibold"
+                  >
+                    {t("fields.confirmPassword.label")}
+                  </label>
+
+                  <div className="relative">
+                    <Input
+                      id="register-confirm-password"
+                      type={showConfirmPassword ? "text" : "password"}
+                      autoComplete="new-password"
+                      placeholder={t("fields.confirmPassword.placeholder")}
+                      className="h-12 bg-card pe-12"
+                      {...register("confirmPassword")}
+                    />
+
+                    <button
+                      type="button"
+                      onClick={() => setShowConfirmPassword((value) => !value)}
+                      className="absolute inset-y-0 inset-e-3 inline-flex items-center text-muted-foreground transition-colors hover:text-foreground"
+                      aria-label={
+                        showConfirmPassword
+                          ? t("fields.confirmPassword.hide")
+                          : t("fields.confirmPassword.show")
+                      }
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="size-4" />
+                      ) : (
+                        <Eye className="size-4" />
+                      )}
+                    </button>
+                  </div>
+
+                  {errors.confirmPassword && (
+                    <p className="text-sm text-destructive">
+                      {errors.confirmPassword.message}
+                    </p>
+                  )}
+                </div>
               </div>
 
               <Button
                 type="button"
-                className="h-12 w-full rounded-full text-base font-semibold cursor-pointer"
+                disabled={isSubmitting || isGoogleSubmitting}
+                className="h-12 w-full cursor-pointer rounded-full text-base font-semibold"
                 onClick={() => {
                   if (validateStep(1)) {
-                    setStep(2);
+                    updateStep(2);
                   }
                 }}
               >
@@ -509,29 +774,26 @@ export function RegisterForm() {
                 />
               </Button>
 
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <span className="w-full border-t border-border" />
-                </div>
-
-                <div className="relative flex justify-center text-sm">
-                  <span className="bg-background px-4 text-muted-foreground">
-                    {t("divider")}
-                  </span>
-                </div>
+              <div className="flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                <span className="h-px flex-1 bg-border" />
+                <span>{t("divider")}</span>
+                <span className="h-px flex-1 bg-border" />
               </div>
 
               <GoogleAuthButton
+                mode="register"
+                locale={locale}
+                disabled={isSubmitting || isGoogleSubmitting}
                 label={t("actions.google")}
-                onClick={handleGoogleFlow}
-                className="cursor-pointer"
+                onCredential={handleGoogleCredential}
+                variant="legacy"
               />
 
               <p className="text-center text-sm text-muted-foreground">
                 {t("footer.haveAccount")}{" "}
                 <Link
                   href={`/${locale}/login`}
-                  className="font-semibold text-primary hover:underline px-1"
+                  className="px-1 font-semibold text-primary hover:underline"
                 >
                   {t("footer.login")}
                 </Link>
@@ -540,7 +802,11 @@ export function RegisterForm() {
           )}
 
           {step === 2 && (
-            <motion.div key="step-2" {...motionProps} className="space-y-5">
+            <motion.div
+              key={`step-2-${locale}`}
+              {...motionProps}
+              className="space-y-5"
+            >
               <section className="space-y-2.5">
                 <div>
                   <h2 className="text-base font-black sm:text-lg">
@@ -615,6 +881,12 @@ export function RegisterForm() {
                   <Input
                     value={allergyInput}
                     onChange={(event) => setAllergyInput(event.target.value)}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter") {
+                        event.preventDefault();
+                        addAllergy();
+                      }
+                    }}
                     placeholder={t("sections.allergies.placeholder")}
                     className="h-12 bg-card"
                   />
@@ -622,7 +894,7 @@ export function RegisterForm() {
                   <Button
                     type="button"
                     variant="outline"
-                    className="h-12 w-1/4 rounded-2xl px-4 border-dashed border-primary border-2 text-primary cursor-pointer hover:bg-primary hover:text-card"
+                    className="h-12 w-1/4 cursor-pointer rounded-2xl border-2 border-dashed border-primary px-4 text-primary hover:bg-primary hover:text-card"
                     onClick={addAllergy}
                   >
                     <Plus className="size-4" />
@@ -662,8 +934,8 @@ export function RegisterForm() {
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer border-2 border-solid border-primary hover:bg-primary hover:text-card"
-                  onClick={() => setStep(1)}
+                  className="h-12 flex-1 cursor-pointer rounded-full border-2 border-solid border-primary text-base font-semibold hover:bg-primary hover:text-card"
+                  onClick={handleBack}
                 >
                   <ArrowLeft
                     className={cn("size-4", isArabic && "rotate-180")}
@@ -673,10 +945,10 @@ export function RegisterForm() {
 
                 <Button
                   type="button"
-                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
+                  className="h-12 flex-1 cursor-pointer rounded-full text-base font-semibold"
                   onClick={() => {
                     if (validateStep(2)) {
-                      setStep(3);
+                      updateStep(3);
                     }
                   }}
                 >
@@ -690,7 +962,11 @@ export function RegisterForm() {
           )}
 
           {step === 3 && (
-            <motion.div key="step-3" {...motionProps} className="space-y-5">
+            <motion.div
+              key={`step-3-${locale}`}
+              {...motionProps}
+              className="space-y-5"
+            >
               <section className="space-y-2.5">
                 <div>
                   <h2 className="text-base font-black sm:text-lg">
@@ -702,20 +978,20 @@ export function RegisterForm() {
                 </div>
 
                 <div className="grid gap-2.5 sm:grid-cols-3">
-                  {FAMILY_TYPES.map((value) => (
+                  {HOUSEHOLD_TYPES.map((value) => (
                     <AuthOptionCard
                       key={value}
                       icon={FAMILY_ICONS[value]}
                       title={t(`options.familyTypes.${value}`)}
                       active={familyType === value}
-                      onClick={() => selectSingleValue("familyType", value)}
+                      onClick={() => selectSingleValue("householdType", value)}
                     />
                   ))}
                 </div>
 
-                {errors.familyType && (
+                {errors.householdType && (
                   <p className="text-sm text-destructive">
-                    {errors.familyType.message as string}
+                    {errors.householdType.message as string}
                   </p>
                 )}
               </section>
@@ -731,21 +1007,23 @@ export function RegisterForm() {
                 </div>
 
                 <div className="grid gap-2.5 sm:grid-cols-3">
-                  {COOKING_LEVELS.map((value) => (
+                  {COOKING_SKILL_LEVELS.map((value) => (
                     <AuthOptionCard
                       key={value}
                       icon={LEVEL_ICONS[value]}
                       title={t(`options.levels.${value}`)}
                       description={t(`options.levelDescriptions.${value}`)}
                       active={cookingLevel === value}
-                      onClick={() => selectSingleValue("cookingLevel", value)}
+                      onClick={() =>
+                        selectSingleValue("cookingSkillLevel", value)
+                      }
                     />
                   ))}
                 </div>
 
-                {errors.cookingLevel && (
+                {errors.cookingSkillLevel && (
                   <p className="text-sm text-destructive">
-                    {errors.cookingLevel.message as string}
+                    {errors.cookingSkillLevel.message as string}
                   </p>
                 )}
               </section>
@@ -761,20 +1039,22 @@ export function RegisterForm() {
                 </div>
 
                 <div className="grid gap-2.5 sm:grid-cols-2">
-                  {TOOLS.map((value) => (
+                  {KITCHEN_TOOLS.map((value) => (
                     <AuthOptionCard
                       key={value}
                       icon={TOOL_ICONS[value]}
                       title={t(`options.tools.${value}`)}
                       active={availableTools.includes(value)}
-                      onClick={() => toggleMultiValue("availableTools", value)}
+                      onClick={() =>
+                        toggleMultiValue("availableKitchenTools", value)
+                      }
                     />
                   ))}
                 </div>
 
-                {errors.availableTools && (
+                {errors.availableKitchenTools && (
                   <p className="text-sm text-destructive">
-                    {errors.availableTools.message as string}
+                    {errors.availableKitchenTools.message as string}
                   </p>
                 )}
               </section>
@@ -790,30 +1070,32 @@ export function RegisterForm() {
                 </div>
 
                 <div className="grid gap-2.5 sm:grid-cols-2">
-                  {GOALS.map((value) => (
+                  {PRIMARY_COOKING_GOALS.map((value) => (
                     <AuthOptionCard
                       key={value}
                       icon={GOAL_ICONS[value]}
                       title={t(`options.goals.${value}`)}
                       active={primaryGoal === value}
-                      onClick={() => selectSingleValue("primaryGoal", value)}
+                      onClick={() =>
+                        selectSingleValue("primaryCookingGoal", value)
+                      }
                     />
                   ))}
                 </div>
 
-                {errors.primaryGoal && (
+                {errors.primaryCookingGoal && (
                   <p className="text-sm text-destructive">
-                    {errors.primaryGoal.message as string}
+                    {errors.primaryCookingGoal.message as string}
                   </p>
                 )}
               </section>
 
-              <div className="flex flex-col gap-3 sm:flex-row cursor-pointer">
+              <div className="flex cursor-pointer flex-col gap-3 sm:flex-row">
                 <Button
                   type="button"
                   variant="outline"
-                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer border-2 border-solid border-primary hover:bg-primary hover:text-card"
-                  onClick={() => setStep(2)}
+                  className="h-12 flex-1 cursor-pointer rounded-full border-2 border-solid border-primary text-base font-semibold hover:bg-primary hover:text-card"
+                  onClick={handleBack}
                 >
                   <ArrowLeft
                     className={cn("size-4", isArabic && "rotate-180")}
@@ -823,8 +1105,8 @@ export function RegisterForm() {
 
                 <Button
                   type="submit"
-                  className="h-12 flex-1 rounded-full text-base font-semibold cursor-pointer"
-                  disabled={isSubmitting}
+                  className="h-12 flex-1 cursor-pointer rounded-full text-base font-semibold"
+                  disabled={isSubmitting || isGoogleSubmitting}
                 >
                   {isSubmitting ? t("actions.loading") : t("actions.finish")}
                   <ArrowRight
@@ -884,7 +1166,7 @@ function OptionChip({
       type="button"
       onClick={onClick}
       className={cn(
-        "inline-flex items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors cursor-pointer",
+        "inline-flex cursor-pointer items-center gap-2 rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
         active
           ? "border-primary bg-primary text-primary-foreground"
           : "border-border bg-card text-foreground hover:border-primary/40",
