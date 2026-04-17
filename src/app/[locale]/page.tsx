@@ -1,4 +1,4 @@
-import Sidebar from "../../widgets/sidebar/Sidebar";
+import Sidebar from "../../widgets/sidebar/Navbar";
 
 export default function Home() {
   return (
