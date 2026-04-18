@@ -55,15 +55,15 @@ export default async function Footer({ locale }: FooterProps) {
         {/* ── Main grid ── */}
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
           {/* Brand column */}
-          <div className="col-span-2 sm:col-span-3 lg:col-span-1">
+          <div className="col-span-2 flex flex-col items-center sm:col-span-3 sm:items-start lg:col-span-1 ">
             <BrandLogo tone="light" />
 
-            <p className="mt-4 max-w-[18rem] text-sm leading-7 text-white/65">
+            <p className="mt-4 max-w-[18rem] text-center text-sm leading-7 text-white/65 sm:text-left">
               {t("tagline")}
             </p>
 
             {/* Social icons */}
-            <div className="mt-5 flex items-center gap-2.5">
+            <div className="mt-5 flex items-center justify-center gap-2.5 sm:justify-start">
               {SOCIAL_ICONS.map(({ Icon, ariaKey }) => (
                 <a
                   key={ariaKey}
@@ -79,7 +79,7 @@ export default async function Footer({ locale }: FooterProps) {
 
           {/* Link columns */}
           {FOOTER_COLUMNS.map((column) => (
-            <div key={column.namespace}>
+            <div key={column.namespace} className="text-center sm:text-left">
               <h3 className="text-sm font-bold text-white">
                 {t(`${column.namespace}.title`)}
               </h3>
