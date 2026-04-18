@@ -1,5 +1,6 @@
 import { AppLayout } from "@/src/layouts/app-layout";
 import { HeroSection } from "@/src/widgets/hero/ui/HeroSection";
+import { SmartFeaturesSection } from "@/src/widgets/smart/ui/SmartFeaturesSection";
 import { ThreeSteps } from "@/src/widgets/three-steps/ThreeSteps";
 
 type HomePageProps = {
@@ -13,6 +14,7 @@ export default async function Home({ params }: HomePageProps) {
     <AppLayout locale={locale}>
       <HeroSection locale={locale} />
       <ThreeSteps locale={locale} />
+      <SmartFeaturesSection locale={locale} />
     </AppLayout>
   );
 }

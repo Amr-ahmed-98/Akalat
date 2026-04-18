@@ -326,5 +326,34 @@
         "description": "Follow beautiful, interactive instructions with voice commands for a stress-free cooking experience."
       }
     }
+  },
+
+  "SmartFeaturesSection": {
+    "title": {
+      "highlight": "Smart Features",
+      "main": "for the Modern Chef"
+    },
+    "features": {
+      "alternatives": {
+        "title": "Smart Alternatives",
+        "description": "Missing something? Our AI suggests the best alternatives based on recipe chemistry and ingredients instantly."
+      },
+      "scanner": {
+        "title": "Ingredients Scanner",
+        "description": "Computer vision that recognizes over 2,000 types of ingredients instantly."
+      },
+      "voice": {
+        "title": "Voice Guidance",
+        "description": "Keep your hands clean, control the app and read steps using only your voice."
+      },
+      "shopping": {
+        "title": "Smart Shopping List",
+        "description": "Intelligently grouped by store aisles to help you finish shopping faster."
+      },
+      "nutrition": {
+        "title": "Nutritional Information",
+        "description": "Automatic calculation of macros and detection of allergens for every meal."
+      }
+    }
   }
 }
