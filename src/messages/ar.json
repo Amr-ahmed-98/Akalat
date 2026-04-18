@@ -2,6 +2,56 @@
   "HomePage": {
     "title": "مرحبا بالعالم!"
   },
+  "Navbar": {
+    "links": {
+      "home": "الرئيسية",
+      "pricing": "الاسعار",
+      "explore": "استكشف",
+      "contact": "تواصل معنا"
+    },
+    "auth": {
+      "login": "دخول",
+      "register": "ابدأ الآن",
+      "logout": "تسجيل الخروج",
+      "logoutLoading": "جارٍ الخروج...",
+      "logoutError": "تعذر تسجيل الخروج حالياً.",
+      "greeting": "مرحباً"
+    },
+    "openMenu": "فتح القائمة",
+    "closeMenu": "إغلاق القائمة"
+  },
+  "Footer": {
+    "tagline": "تمكين الطهاة المنزليين برؤى ذكية ورحلات طهي شخصية.",
+    "product": {
+      "title": "المنتج",
+      "scanner": "الماسح الضوئي",
+      "recipes": "الوصفات",
+      "pricing": "الأسعار"
+    },
+    "company": {
+      "title": "الشركة",
+      "about": "من نحن",
+      "blog": "المدونة"
+    },
+    "resources": {
+      "title": "الموارد",
+      "helpCenter": "مركز المساعدة",
+      "account": "حسابي"
+    },
+    "legal": {
+      "title": "قانوني",
+      "privacy": "الخصوصية",
+      "terms": "الشروط"
+    },
+    "social": {
+      "website": "الموقع الإلكتروني",
+      "verified": "حساب موثق",
+      "awards": "الجوائز"
+    },
+    "copyrightPrefix": "© 2024",
+    "copyrightBrand": "اكلات",
+    "copyrightSuffix": ". فن الطهي الرقمي."
+  },
   "Auth": {
     "layout": {
       "backHome": "العودة للرئيسية",

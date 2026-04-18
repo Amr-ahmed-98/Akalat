@@ -2,6 +2,56 @@
   "HomePage": {
     "title": "Hello world!"
   },
+  "Navbar": {
+    "links": {
+      "home": "Home",
+      "pricing": "Pricing",
+      "explore": "Explore",
+      "contact": "Contact Us"
+    },
+    "auth": {
+      "login": "Login",
+      "register": "Get Started",
+      "logout": "Logout",
+      "logoutLoading": "Logging out...",
+      "logoutError": "Unable to logout right now.",
+      "greeting": "Hello"
+    },
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu"
+  },
+  "Footer": {
+    "tagline": "Empowering home cooks with smart insights and personalized cooking journeys.",
+    "product": {
+      "title": "Product",
+      "scanner": "Scanner",
+      "recipes": "Recipes",
+      "pricing": "Pricing"
+    },
+    "company": {
+      "title": "Company",
+      "about": "About Us",
+      "blog": "Blog"
+    },
+    "resources": {
+      "title": "Resources",
+      "helpCenter": "Help Center",
+      "account": "My Account"
+    },
+    "legal": {
+      "title": "Legal",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "social": {
+      "website": "Website",
+      "verified": "Verified account",
+      "awards": "Awards"
+    },
+    "copyrightPrefix": "© 2024",
+    "copyrightBrand": "Akalat",
+    "copyrightSuffix": ". The art of digital cooking."
+  },
   "Auth": {
     "layout": {
       "backHome": "Back to home",
@@ -29,7 +79,7 @@
       "loading": "Logging in...",
       "divider": "or",
       "google": "Continue with Google",
-      "footerText": "Don’t have an account?",
+      "footerText": "Don't have an account?",
       "footerLink": "Create one",
       "showPassword": "Show password",
       "hidePassword": "Hide password",
@@ -179,7 +229,7 @@
     "forgotPassword": {
       "eyebrow": "Account recovery",
       "title": "Forgot your password?",
-      "description": "Enter your email and we’ll start the password reset flow.",
+      "description": "Enter your email and we'll start the password reset flow.",
       "emailLabel": "Email address",
       "emailPlaceholder": "example@foodai.com",
       "submit": "Continue",
