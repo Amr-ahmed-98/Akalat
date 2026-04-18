@@ -1,6 +1,24 @@
 {
-  "HomePage": {
-    "title": "مرحبا بالعالم!"
+  "HomePage": { "title": "مرحبا بالعالم!" },
+  "HeroSection": {
+    "badge": "فن الطهي بالذكاء الاصطناعي",
+    "headingLine1": "اطبخ بذكاء أكبر",
+    "headingLine2": "باستخدام مكونات",
+    "headingLine3": "لديك بالفعل.",
+    "description": "اقتراحات وصفات مدعومة بالذكاء الاصطناعي بناءً على ما هو موجود في مطبخك. لا مزيد من إهدار الطعام، فقط إمكانيات لذيذة.",
+    "ctaPrimary": "ابدأ الآن",
+    "ctaSecondary": "شاهد العرض",
+    "mockup": {
+      "scannerTitle": "مسح المخزن...",
+      "ingredient1": "أفوكادو",
+      "ingredient2": "سبانخ",
+      "ingredient3": "كينوا",
+      "matchBadge": "مطابقة بنسبة 98%",
+      "recipeTitle": "وعاء الحصاد الصحي",
+      "recipeTime": "15 دقيقة",
+      "healthLabel": "رؤية صحية",
+      "healthText": "غني بالألياف والحديد"
+    }
   },
   "Navbar": {
     "links": {
@@ -99,15 +117,9 @@
         "google": "المتابعة بواسطة جوجل",
         "useEmail": "استخدم البريد الإلكتروني بدلاً من ذلك"
       },
-      "footer": {
-        "haveAccount": "لديك حساب بالفعل؟",
-        "login": "تسجيل الدخول"
-      },
+      "footer": { "haveAccount": "لديك حساب بالفعل؟", "login": "تسجيل الدخول" },
       "fields": {
-        "name": {
-          "label": "الاسم الكامل",
-          "placeholder": "أليكس خبير الطهي"
-        },
+        "name": { "label": "الاسم الكامل", "placeholder": "أليكس خبير الطهي" },
         "email": {
           "label": "البريد الإلكتروني",
           "placeholder": "alex@foodai.com"

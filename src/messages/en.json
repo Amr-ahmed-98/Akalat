@@ -1,6 +1,24 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
+  "HomePage": { "title": "Hello world!" },
+  "HeroSection": {
+    "badge": "The Art of AI Cooking",
+    "headingLine1": "Cook smarter",
+    "headingLine2": "using the ingredients",
+    "headingLine3": "you already have.",
+    "description": "AI-powered recipe suggestions based on what's already in your kitchen. No more food waste, just delicious possibilities.",
+    "ctaPrimary": "Get Started",
+    "ctaSecondary": "Watch Demo",
+    "mockup": {
+      "scannerTitle": "Scanning pantry...",
+      "ingredient1": "Avocado",
+      "ingredient2": "Spinach",
+      "ingredient3": "Quinoa",
+      "matchBadge": "98% Match",
+      "recipeTitle": "Healthy Harvest Bowl",
+      "recipeTime": "15 min",
+      "healthLabel": "Health insight",
+      "healthText": "Rich in fiber and iron"
+    }
   },
   "Navbar": {
     "links": {
@@ -99,19 +117,10 @@
         "google": "Continue with Google",
         "useEmail": "Use email instead"
       },
-      "footer": {
-        "haveAccount": "Already have an account?",
-        "login": "Login"
-      },
+      "footer": { "haveAccount": "Already have an account?", "login": "Login" },
       "fields": {
-        "name": {
-          "label": "Full name",
-          "placeholder": "Alex Chef"
-        },
-        "email": {
-          "label": "Email address",
-          "placeholder": "alex@foodai.com"
-        },
+        "name": { "label": "Full name", "placeholder": "Alex Chef" },
+        "email": { "label": "Email address", "placeholder": "alex@foodai.com" },
         "password": {
           "label": "Password",
           "placeholder": "••••••••",
