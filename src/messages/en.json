@@ -355,5 +355,32 @@
         "description": "Automatic calculation of macros and detection of allergens for every meal."
       }
     }
+  },
+
+  "ChefSection": {
+    "title": {
+      "first": "Good for you,",
+      "highlight": "great",
+      "last": "for the planet."
+    },
+    "imageAlt": "Professional chef preparing a delicious meal",
+    "features": {
+      "waste": {
+        "title": "Reduce Food Waste",
+        "description": "Stop wasting your money. Our AI prioritizes ingredients close to their expiration dates."
+      },
+      "time": {
+        "title": "Save Time & Mental Energy",
+        "description": "End the daily argument about \"what's for dinner\" with smart, instant suggestions."
+      },
+      "personalized": {
+        "title": "Personalized Cooking",
+        "description": "FoodAI learns your tastes and preferences over time — whether you're vegan, gluten-free, keto, or any other diet."
+      }
+    },
+    "stats": {
+      "title": "Hi: Sustainable",
+      "description": "FoodAI users reduce household food waste by an average of 34% in the first month."
+    }
   }
 }
