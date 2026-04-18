@@ -305,5 +305,26 @@
       "otpLength": "The verification code must be 6 digits.",
       "otpDigits": "The verification code must contain numbers only."
     }
+  },
+  "ThreeStepsSection": {
+    "title": {
+      "highlight": "Three Steps",
+      "main": "to a Perfect Meal"
+    },
+    "subtitle": "We've simplified the journey from a stocked fridge to a gourmet dish.",
+    "steps": {
+      "scan": {
+        "title": "Scan Ingredients",
+        "description": "Simply snap a photo of your fridge or pantry, our AI identifies everything in seconds."
+      },
+      "ai": {
+        "title": "AI Suggests Recipes",
+        "description": "Get personalized recipe matches based on what you have and your dietary goals."
+      },
+      "cook": {
+        "title": "Cook with Guidance",
+        "description": "Follow beautiful, interactive instructions with voice commands for a stress-free cooking experience."
+      }
+    }
   }
 }
