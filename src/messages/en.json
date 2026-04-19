@@ -382,5 +382,29 @@
       "title": "Hi: Sustainable",
       "description": "FoodAI users reduce household food waste by an average of 34% in the first month."
     }
+  },
+
+  "TestimonialsSection": {
+    "title": {
+      "first": "This is what",
+      "highlight": "our creators say."
+    },
+    "description": "Join over 50,000 home cooks using FoodAI for revolutionary creations in their kitchens.",
+    "stats": {
+      "joined": "+50,000 users",
+      "desc": "trust FoodAI daily"
+    },
+    "testimonials": [
+      {
+        "name": "Marcus Norton",
+        "role": "Developer & Influencer / Cook",
+        "content": "The alternatives editor is a real lifesaver. Being vegan in a small town is tough, but FoodAI always knows how to adapt any recipe for me."
+      },
+      {
+        "name": "Sarah Jenkins",
+        "role": "Home Cook since 2021",
+        "content": "FoodAI has literally changed my relationship with cooking. I used to spend hours figuring out what to cook, now I just open the fridge and let AI guide me."
+      }
+    ]
   }
 }
