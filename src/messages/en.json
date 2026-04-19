@@ -514,5 +514,23 @@
         "cta": "Subscribe Now"
       }
     }
+  },
+
+  "FAQSection": {
+    "title": "Frequently Asked Questions",
+    "questions": [
+      {
+        "question": "Can I cancel my subscription at any time?",
+        "answer": "Yes. You can cancel your subscription at any time with no extra fees. Your plan will remain active until the end of your current billing period."
+      },
+      {
+        "question": "What payment methods are available?",
+        "answer": "We accept major credit cards including Visa, Mastercard, and American Express, along with Apple Pay and Google Pay. All payments are encrypted and processed securely."
+      },
+      {
+        "question": "How does the AI understand my needs?",
+        "answer": "Our AI analyzes your eating habits, preferences, health goals, and available ingredients. Over time, it learns from your usage and delivers more accurate, personalized recommendations."
+      }
+    ]
   }
 }
