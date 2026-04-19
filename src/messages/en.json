@@ -434,5 +434,85 @@
         "description": "The 'what are we eating today' idea? A complete balanced plan in seconds."
       }
     }
+  },
+
+  "PricingSection": {
+    "header": {
+      "badge": "Premium Subscriptions",
+      "first": "Invest in Your Health with",
+      "highlight": "Akalat",
+      "description": "Flexible plans designed to fit your lifestyle. Start for free today or elevate your experience with advanced AI features."
+    },
+    "toggle": {
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "discount": "Save 20%"
+    },
+    "popular": "Most Popular",
+    "currency": "SAR",
+    "perMonth": "/month",
+    "billedYearly": "Billed yearly at",
+    "save": "Save",
+    "plans": {
+      "free": {
+        "name": "Free Plan",
+        "description": "To get started",
+        "features": [
+          "Daily nutrition and calorie tracking with 10 recipe views",
+          "AI-powered meal planning and suggestions",
+          "Food inventory storage"
+        ],
+        "cta": "Start Free"
+      },
+      "basic": {
+        "name": "Basic Plan",
+        "description": "For beginners",
+        "features": [
+          "Daily nutrition and calorie tracking with 20 recipe views",
+          "AI-powered meal planning and suggestions",
+          "Food inventory storage",
+          "5 meals per month"
+        ],
+        "cta": "Subscribe Now"
+      },
+      "advanced": {
+        "name": "Advanced Plan",
+        "description": "For active users",
+        "features": [
+          "Daily nutrition and calorie tracking with 50 recipe views",
+          "Advanced AI meal planning",
+          "Food inventory storage",
+          "10 meals per month",
+          "Up to 80 minutes"
+        ],
+        "cta": "Subscribe Now"
+      },
+      "pro": {
+        "name": "Professional Plan",
+        "description": "For professionals",
+        "features": [
+          "Daily nutrition and calorie tracking with 100 recipe views",
+          "Advanced AI meal planning",
+          "Food inventory storage",
+          "50 meals per month",
+          "Up to 400 minutes",
+          "Priority support"
+        ],
+        "cta": "Subscribe Now"
+      },
+      "gold": {
+        "name": "Gold Plan",
+        "description": "For businesses",
+        "features": [
+          "Daily nutrition and calorie tracking with unlimited recipe views",
+          "Advanced AI meal planning",
+          "Food inventory storage",
+          "Unlimited meals per month",
+          "Up to 800 minutes",
+          "24/7 priority support"
+        ],
+        "cta": "Subscribe Now"
+      }
+    }
   }
 }

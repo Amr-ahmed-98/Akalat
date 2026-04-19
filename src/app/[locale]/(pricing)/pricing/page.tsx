@@ -1,4 +1,5 @@
 import { AppLayout } from "@/src/layouts/app-layout";
+import { PricingSection } from "@/src/widgets/pricing/ui/PricingSection";
 import { ProFeaturesSection } from "@/src/widgets/pro-features/ui/ProFeaturesSection";
 
 type PricingPageProps = {
@@ -10,6 +11,7 @@ export default async function PricingPage({ params }: PricingPageProps) {
 
   return (
     <AppLayout locale={locale}>
+      <PricingSection locale={locale} />
       <ProFeaturesSection locale={locale} />
     </AppLayout>
   );
