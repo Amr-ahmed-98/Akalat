@@ -406,5 +406,33 @@
         "content": "FoodAI has literally changed my relationship with cooking. I used to spend hours figuring out what to cook, now I just open the fridge and let AI guide me."
       }
     ]
+  },
+
+  "ProFeaturesSection": {
+    "header": {
+      "badge": "Pro Features",
+      "first": "Why Choose",
+      "highlight": "Pro Features?"
+    },
+    "features": {
+      "ai": {
+        "title": "AI That Understands Your Taste",
+        "description": "Our smart engine doesn't just suggest recipes, it analyzes your dietary habits and taste preferences to provide unique suggestions that evolve with you day by day.",
+        "badge": "Match accuracy: 98%"
+      },
+      "voice": {
+        "title": "Voice Mode",
+        "description": "Cook without touching your phone, interact with the voice assistant to get steps and measurements."
+      },
+      "reports": {
+        "title": "Advanced Nutrition Reports",
+        "description": "Charts showing your consumption of macros, vitamins, and minerals with instant tips to improve your health.",
+        "badge": "View sample reports ←"
+      },
+      "planning": {
+        "title": "Weekly Planning",
+        "description": "The 'what are we eating today' idea? A complete balanced plan in seconds."
+      }
+    }
   }
 }
