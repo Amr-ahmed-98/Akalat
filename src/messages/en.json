@@ -580,5 +580,61 @@
   "PricingPage": {
     "title": "Pricing - Akalat",
     "description": "Choose the perfect plan for your needs. All plans include a 14-day money-back guarantee."
+  },
+
+  "feedback": {
+    "title": "Share Your Feedback",
+    "subtitle": "Your notes help us make FoodAI better for everyone",
+    "fields": {
+      "type": {
+        "label": "Observation Type",
+        "placeholder": "New suggestion",
+        "options": {
+          "suggestion": "Suggestion",
+          "bug": "Bug Report",
+          "complaint": "Complaint",
+          "question": "Question",
+          "other": "Other"
+        }
+      },
+      "importance": {
+        "label": "Importance Level",
+        "options": {
+          "normal": "Normal",
+          "urgent": "Urgent"
+        }
+      },
+      "details": {
+        "label": "Observation Details",
+        "placeholder": "Tell us more details..."
+      },
+      "screenshot": {
+        "label": "Screenshot",
+        "optional": "Optional",
+        "dropzone": "File upload area",
+        "dropHint": "Drag file here or click to upload",
+        "fileConstraint": "Up to 5MB, JPG, PNG",
+        "previewAlt": "Screenshot preview",
+        "removeFile": "Remove file"
+      }
+    },
+    "actions": {
+      "submit": "Send Feedback",
+      "submitting": "Sending..."
+    },
+    "toast": {
+      "success": "Feedback Sent!",
+      "successDescription": "Thank you for helping us improve.",
+      "error": "Something went wrong",
+      "errorDescription": "Please try again later."
+    },
+    "errors": {
+      "typeRequired": "Please select an observation type",
+      "importanceRequired": "Please select an importance level",
+      "detailsMin": "Details must be at least 10 characters",
+      "detailsMax": "Details must not exceed 1000 characters",
+      "fileSizeMax": "File size must not exceed 5MB",
+      "fileTypeInvalid": "Only JPG and PNG files are allowed"
+    }
   }
 }

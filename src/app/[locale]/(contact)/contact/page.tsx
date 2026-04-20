@@ -1,6 +1,7 @@
 import { AppLayout } from "@/src/layouts/app-layout";
 import { ContactSection } from "@/src/widgets/contact/ui/ContactSection";
 import { getTranslations } from "next-intl/server";
+import { FeedbackSection } from "@/src/widgets/feedback/ui/FeedbackSection";
 
 type ContactPageProps = {
   params: {
@@ -25,6 +26,7 @@ export default async function ContactPage({ params }: ContactPageProps) {
     <main className="min-h-screen bg-background">
       <AppLayout locale={params.locale}>
         <ContactSection locale={params.locale} />
+        <FeedbackSection locale={params.locale} />
       </AppLayout>
     </main>
   );

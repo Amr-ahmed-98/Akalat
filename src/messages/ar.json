@@ -577,5 +577,65 @@
   "ContactPage": {
     "title": "تواصل معنا - اكلات",
     "description": "نحن هنا لمساعدتك. ابحث عن إجابات للأسئلة الشائعة أو تواصل مع فريق الدعم مباشرة."
+  },
+  "PricingPage": {
+    "title": "الأسعار - اكلات",
+    "description": "اختر الخطة المناسبة لاحتياجاتك. جميع الخطط تتضمن ضمان استرداد لمدة 14 يوماً."
+  },
+
+  "feedback": {
+    "title": "شاركنا رأيك",
+    "subtitle": "ملاحظاتك ساعدنا على جعل FoodAI أفضل للجميع",
+    "fields": {
+      "type": {
+        "label": "نوع الملاحظة",
+        "placeholder": "اقتراح مرة جديدة",
+        "options": {
+          "suggestion": "اقتراح",
+          "bug": "تقرير خطأ",
+          "complaint": "شكوى",
+          "question": "سؤال",
+          "other": "أخرى"
+        }
+      },
+      "importance": {
+        "label": "درجة الأهمية",
+        "options": {
+          "normal": "عادي",
+          "urgent": "عاجل"
+        }
+      },
+      "details": {
+        "label": "تفاصيل الملاحظة",
+        "placeholder": "أخبرنا بالمزيد من التفاصيل..."
+      },
+      "screenshot": {
+        "label": "لقطة شاشة",
+        "optional": "اختياري",
+        "dropzone": "منطقة تحميل الملف",
+        "dropHint": "اسحب الملف هنا أو انقر للتحميل",
+        "fileConstraint": "PNG, JPG حتى 5 ميجابايت",
+        "previewAlt": "معاينة لقطة الشاشة",
+        "removeFile": "إزالة الملف"
+      }
+    },
+    "actions": {
+      "submit": "إرسال الملاحظات",
+      "submitting": "جارٍ الإرسال..."
+    },
+    "toast": {
+      "success": "تم الإرسال!",
+      "successDescription": "شكراً لمساعدتنا على التحسين.",
+      "error": "حدث خطأ ما",
+      "errorDescription": "يرجى المحاولة مرة أخرى لاحقاً."
+    },
+    "errors": {
+      "typeRequired": "يرجى اختيار نوع الملاحظة",
+      "importanceRequired": "يرجى اختيار درجة الأهمية",
+      "detailsMin": "يجب أن تكون التفاصيل 10 أحرف على الأقل",
+      "detailsMax": "يجب ألا تتجاوز التفاصيل 1000 حرف",
+      "fileSizeMax": "يجب ألا يتجاوز حجم الملف 5 ميجابايت",
+      "fileTypeInvalid": "يُسمح فقط بملفات JPG و PNG"
+    }
   }
 }
