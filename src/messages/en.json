@@ -532,5 +532,53 @@
         "answer": "Our AI analyzes your eating habits, preferences, health goals, and available ingredients. Over time, it learns from your usage and delivers more accurate, personalized recommendations."
       }
     ]
+  },
+
+  "ContactSection": {
+    "title": "How can we help you today?",
+    "description": "We're here to ensure a smart and seamless cooking experience. Find solutions or contact us directly.",
+    "quickSolutions": {
+      "title": "Quick Solutions",
+      "login": {
+        "title": "Login Issues",
+        "description": "Password recovery"
+      },
+      "sync": {
+        "title": "Data Sync",
+        "description": "Update lists across devices"
+      },
+      "billing": {
+        "title": "Billing & Subscription",
+        "description": "Manage your paid membership"
+      }
+    },
+    "faq": {
+      "title": "How does the AI suggestion engine work?",
+      "chatButton": "Trending Now +",
+      "questions": [
+        {
+          "question": "How are recipes customized to my taste?",
+          "answer": "Our AI engine analyzes your dietary preferences, ingredients you have, and health goals. With each use, the system learns more about your taste and provides more accurate and personalized recommendations that suit your unique needs."
+        },
+        {
+          "question": "Can I modify ingredients in a recipe?",
+          "answer": "Absolutely! You can easily modify any ingredient in the recipe. The system will automatically adjust quantities and steps based on your changes while maintaining flavor balance and nutritional value."
+        },
+        {
+          "question": "How do I get alternatives for missing ingredients?",
+          "answer": "When you mark an ingredient as missing, the AI instantly provides you with a list of suitable alternatives based on the recipe's chemistry. Each alternative comes with an explanation of how it affects the final taste and nutritional value."
+        }
+      ],
+      "needHelp": "Need additional help? Contact support team"
+    }
+  },
+
+  "ContactPage": {
+    "title": "Contact Us - Akalat",
+    "description": "We're here to help. Find answers to common questions or contact our support team directly."
+  },
+  "PricingPage": {
+    "title": "Pricing - Akalat",
+    "description": "Choose the perfect plan for your needs. All plans include a 14-day money-back guarantee."
   }
 }
