@@ -94,7 +94,7 @@
     --secondary: #011937;            /* ← Secondary - dark navy badges/bg */
     --secondary-foreground: #ffffff;
     --muted: #F1F5F9;               /* Sub-background */
-    --muted-foreground: #20212480;   /* Helper text (with opacity) */
+    --muted-foreground: #464646;   /* Helper text (with opacity) */
     --accent: #F9896B;               /* ← Sub-main color - badges, soft highlights */
     --accent-foreground: #ffffff;
     --destructive: oklch(0.577 0.245 27.325); /* keep as is */
