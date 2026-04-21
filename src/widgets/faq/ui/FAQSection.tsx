@@ -20,13 +20,8 @@ export async function FAQSection({ locale }: FAQSectionProps) {
   return (
     <section
       dir={isArabic ? "rtl" : "ltr"}
-      className="w-full py-16 md:py-24 lg:py-32 bg-muted relative overflow-hidden"
+      className="w-full py-16  bg-muted relative overflow-hidden"
     >
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
-      </div>
-
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <div className="text-center mb-12 md:mb-16">

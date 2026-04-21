@@ -36,7 +36,7 @@ export function FAQSection({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-card rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-lg border border-border/50"
+      className="bg-card rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-border/50"
     >
       {/* Header */}
       <div className="flex items-center justify-between mb-6 pb-6 border-b border-border/50">

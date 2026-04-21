@@ -56,6 +56,16 @@ export function PricingToggle({
 }: PricingToggleProps) {
   const { billingPeriod, setBillingPeriod } = usePricingToggle();
 
+  // In RTL the buttons are mirrored (monthly on right, yearly on left),
+  // so we flip the left positions to keep the highlight following the click.
+  const slideLeft = isArabic
+    ? billingPeriod === "monthly"
+      ? "50%"
+      : "0.375rem"
+    : billingPeriod === "monthly"
+      ? "0.375rem"
+      : "50%";
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 10 }}
@@ -96,7 +106,7 @@ export function PricingToggle({
           className="absolute top-1.5 bottom-1.5 bg-primary/10 rounded-full"
           initial={false}
           animate={{
-            left: billingPeriod === "monthly" ? "0.375rem" : "50%",
+            left: slideLeft,
             width: "calc(50% - 0.375rem)",
           }}
           transition={{ type: "spring", stiffness: 400, damping: 30 }}

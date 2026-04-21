@@ -44,7 +44,8 @@ export function QuickSolutions({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="bg-card rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-lg border border-border/50 h-full"
+      className="bg-card rounded-2xl md:rounded-3xl p-6 md:p-8 shadow-sm border border-border/50 h-full"
+      dir={isArabic ? "rtl" : "ltr"}
     >
       <h3 className="text-xl md:text-2xl font-bold text-foreground mb-6 text-center">
         {title}
@@ -62,11 +63,11 @@ export function QuickSolutions({
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.1 }}
               whileHover={{ x: isArabic ? -5 : 5 }}
-              className="group "
+              className="group"
             >
               <div className="flex items-center gap-4 p-4 rounded-xl bg-muted/50 hover:bg-muted transition-colors duration-300">
                 <motion.div
-                  className={`flex-shrink-0 w-12 h-12 ${link.color} rounded-xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300`}
+                  className={`flex-shrink-0 w-12 h-12 ${link.color} rounded-xl flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform duration-300`}
                   whileHover={{ rotate: 5 }}
                 >
                   <Icon className="w-6 h-6 text-white" />

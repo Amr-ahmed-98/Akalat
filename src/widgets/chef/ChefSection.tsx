@@ -27,7 +27,7 @@ export async function ChefSection({ locale }: ChefSectionProps) {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section className="w-full py-16 md:py-24 lg:py-32 bg-card relative overflow-hidden">
       {/* Decorative background elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/2 -left-20 w-96 h-96 bg-primary/5 rounded-full blur-3xl" />

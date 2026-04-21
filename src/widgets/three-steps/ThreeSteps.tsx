@@ -9,7 +9,7 @@ export async function ThreeSteps({ locale }: ThreeStepsSectionProps) {
   const isArabic = locale === "ar";
 
   return (
-    <section className="w-full bg-card py-16 md:py-24 lg:py-32">
+    <section className="w-full bg-card py-16 ">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <div className="mb-12 text-center md:mb-16">

@@ -10,7 +10,7 @@ type ProFeaturesSectionProps = {
 
 type FeatureItem = {
   id: number;
-  icon: string;
+  icon: "brain" | "mic" | "chart" | "calendar";
   title: string;
   description: string;
   badge: string | null;
@@ -62,7 +62,7 @@ export async function ProFeaturesSection({ locale }: ProFeaturesSectionProps) {
   ];
 
   return (
-    <section className="w-full py-16 md:py-24 lg:py-32 bg-background relative overflow-hidden">
+    <section className="w-full py-16  bg-background relative overflow-hidden ">
       {/* Animated background grid */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute inset-0 opacity-[0.03]">
@@ -76,6 +76,8 @@ export async function ProFeaturesSection({ locale }: ProFeaturesSectionProps) {
         </div>
         <div className="absolute top-1/4 -right-32 w-64 h-64 bg-primary/5 rounded-full blur-3xl animate-pulse" />
         <div className="absolute bottom-1/4 -left-32 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-pulse delay-1000" />
+        {/* Fade out the dot grid at the bottom edge so it doesn't appear as a line */}
+        <div className="absolute bottom-0 left-0 right-0 h-20 bg-gradient-to-t from-background to-transparent" />
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -96,23 +98,17 @@ export async function ProFeaturesSection({ locale }: ProFeaturesSectionProps) {
           </h2>
         </div>
 
-        {/* Features Grid - Creative Layout */}
-        <div className="relative">
-          {/* Central connecting line */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary via-accent to-primary opacity-20" />
-
-          {/* Features */}
-          <div className="space-y-8 md:space-y-12">
-            {features.map((feature, index) => (
-              <FeatureCard
-                key={feature.id}
-                {...feature}
-                delay={index * 150}
-                isArabic={isArabic}
-                index={index}
-              />
-            ))}
-          </div>
+        {/* Features — 2-column grid on md+, single column on mobile */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
+          {features.map((feature, index) => (
+            <FeatureCard
+              key={feature.id}
+              {...feature}
+              delay={index * 150}
+              isArabic={isArabic}
+              index={index}
+            />
+          ))}
         </div>
       </div>
     </section>

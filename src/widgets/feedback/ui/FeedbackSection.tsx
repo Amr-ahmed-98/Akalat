@@ -40,9 +40,9 @@ export const FeedbackSection = ({ locale }: FeedbackSectionProps) => {
   return (
     <section
       dir={isArabic ? "rtl" : "ltr"}
-      className="w-full max-w-2xl mx-auto px-4 py-8 sm:px-6"
+      className="w-full max-w-4xl mx-auto px-4 py-8 sm:px-6"
     >
-      <div className="rounded-2xl bg-card border border-border shadow-sm overflow-hidden">
+      <div className="rounded-2xl bg-card border border-border shadow-sm overflow-hidden ">
         {/* ── Header ── */}
         <div className="flex items-start justify-between gap-4 px-6 pt-6 pb-4 border-b border-border">
           <div className="space-y-0.5">
@@ -187,7 +187,7 @@ export const FeedbackSection = ({ locale }: FeedbackSectionProps) => {
             type="submit"
             disabled={isSubmitting}
             className={cn(
-              "w-full flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground transition-all",
+              "w-full flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-primary-foreground transition-all cursor-pointer",
               "bg-primary hover:bg-primary/90 active:scale-[0.98]",
               "disabled:opacity-60 disabled:cursor-not-allowed disabled:active:scale-100",
               "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2",

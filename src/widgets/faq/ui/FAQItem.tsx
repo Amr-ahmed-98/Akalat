@@ -24,7 +24,7 @@ export function FAQItem({ question, answer, delay, isArabic }: FAQItemProps) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: delay / 1000 }}
-      className="bg-card rounded-2xl border border-border/50 shadow-lg overflow-hidden"
+      className="bg-card rounded-2xl border border-border/50 shadow-sm overflow-hidden"
     >
       {/* Question Button */}
       <button

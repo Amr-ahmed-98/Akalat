@@ -42,7 +42,7 @@ export async function ContactSection({ locale }: ContactSectionProps) {
   return (
     <section
       dir={isArabic ? "rtl" : "ltr"}
-      className="w-full py-16 md:py-24 lg:py-32 bg-muted relative overflow-hidden"
+      className="w-full py-16  bg-muted relative overflow-hidden"
     >
       {/* Background decoration */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
