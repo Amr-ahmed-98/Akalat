@@ -78,14 +78,16 @@ function shouldAttemptRefresh(
 
 async function refreshAccessToken(): Promise<AuthPayload | null> {
   const refreshToken = getRefreshToken();
-  if (!refreshToken || !baseURL) {
+  if (!refreshToken) {
     clearAuthSession();
     return null;
   }
 
+  const refreshUrl = baseURL ? `${baseURL}/api/auth/refresh` : "/api/auth/refresh";
+
   try {
     const response = await axios.post<SuccessEnvelope<AuthPayload>>(
-      `${baseURL}/api/auth/refresh`,
+      refreshUrl,
       { refreshToken },
       {
         headers: {

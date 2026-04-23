@@ -2,14 +2,15 @@ import { AppLayout } from "@/src/layouts/app-layout";
 import { getTranslations } from "next-intl/server";
 
 type ExplorePageProps = {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({ params }: ExplorePageProps) {
+  const { locale } = await params;
   const t = await getTranslations({
-    locale: params.locale,
+    locale,
     namespace: "ExplorePage",
   });
 
@@ -20,9 +21,10 @@ export async function generateMetadata({ params }: ExplorePageProps) {
 }
 
 export default async function ExplorePage({ params }: ExplorePageProps) {
+  const { locale } = await params;
   return (
     <main className="min-h-screen bg-background">
-      <AppLayout locale={params.locale}>
+      <AppLayout locale={locale}>
         <p>GG</p>
       </AppLayout>
     </main>

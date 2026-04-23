@@ -4,14 +4,15 @@ import { getTranslations } from "next-intl/server";
 import { FeedbackSection } from "@/src/widgets/feedback/ui/FeedbackSection";
 
 type ContactPageProps = {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({ params }: ContactPageProps) {
+  const { locale } = await params;
   const t = await getTranslations({
-    locale: params.locale,
+    locale,
     namespace: "ContactPage",
   });
 
@@ -22,11 +23,12 @@ export async function generateMetadata({ params }: ContactPageProps) {
 }
 
 export default async function ContactPage({ params }: ContactPageProps) {
+  const { locale } = await params;
   return (
     <main className="min-h-screen bg-background">
-      <AppLayout locale={params.locale}>
-        <ContactSection locale={params.locale} />
-        <FeedbackSection locale={params.locale} />
+      <AppLayout locale={locale}>
+        <ContactSection locale={locale} />
+        <FeedbackSection locale={locale} />
       </AppLayout>
     </main>
   );

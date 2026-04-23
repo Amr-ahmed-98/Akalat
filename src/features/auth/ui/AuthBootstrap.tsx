@@ -2,15 +2,24 @@
 
 import { useEffect } from "react";
 import { fetchCurrentUser } from "../model/auth-api";
-import { getAccessToken } from "../model/auth-sessions";
+import {
+  getAccessToken,
+  setAuthBootstrapStatus,
+} from "../model/auth-sessions";
 
 export function AuthBootstrap() {
   useEffect(() => {
     if (!getAccessToken()) {
+      setAuthBootstrapStatus("ready");
       return;
     }
 
-    void fetchCurrentUser().catch(() => undefined);
+    setAuthBootstrapStatus("loading");
+    void fetchCurrentUser()
+      .catch(() => undefined)
+      .finally(() => {
+        setAuthBootstrapStatus("ready");
+      });
   }, []);
 
   return null;

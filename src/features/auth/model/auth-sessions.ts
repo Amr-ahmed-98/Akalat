@@ -10,6 +10,7 @@ const DEFAULT_ACCESS_TOKEN_EXPIRY_IN_DAYS = 15 / (24 * 60);
 
 let memoryRefreshToken: string | null = null;
 let authenticatedUser: PublicUser | null = null;
+let authBootstrapStatus: "idle" | "loading" | "ready" = "idle";
 
 function emitAuthChange(): void {
   if (typeof window === "undefined") {
@@ -62,6 +63,15 @@ export function getAuthenticatedUser(): PublicUser | null {
   return authenticatedUser;
 }
 
+export function getAuthBootstrapStatus(): "idle" | "loading" | "ready" {
+  return authBootstrapStatus;
+}
+
+export function setAuthBootstrapStatus(status: "idle" | "loading" | "ready"): void {
+  authBootstrapStatus = status;
+  emitAuthChange();
+}
+
 export function setAuthenticatedUser(user: PublicUser | null): void {
   authenticatedUser = user;
   emitAuthChange();
@@ -88,5 +98,6 @@ export function clearAuthSession(): void {
   removeClientCookie(ACCESS_TOKEN_COOKIE_KEY);
   memoryRefreshToken = null;
   authenticatedUser = null;
+  authBootstrapStatus = "ready";
   emitAuthChange();
 }

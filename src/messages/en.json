@@ -586,6 +586,92 @@
     "description": "Discover new recipes and features tailored to your taste."
   },
 
+  "IngredientScannerPage": {
+    "meta": {
+      "title": "Scan ingredients - Akalat",
+      "description": "Scan ingredients using camera, barcodes, or text."
+    },
+    "title": "Ingredients Scanner",
+    "subtitle": "Turn what you have into smarter cooking ideas. Pick a scan method and start adding ingredients to your results.",
+    "modes": {
+      "camera": "Scan with camera",
+      "barcode": "Scan barcode",
+      "text": "Type text"
+    },
+    "advice": {
+      "title": "Best scanning tips",
+      "subtitle": "Small tweaks can boost recognition accuracy.",
+      "tip1Title": "Good lighting",
+      "tip1Body": "Natural light helps the scanner see ingredients clearly.",
+      "tip2Title": "Separate items",
+      "tip2Body": "Spread items a bit so the AI can detect each one.",
+      "tip3Title": "Clear background",
+      "tip3Body": "A clean surface reduces noise and improves results.",
+      "primaryCta": "Create recipes"
+    },
+    "camera": {
+      "title": "Camera scan",
+      "subtitle": "Upload a photo or take one using your camera.",
+      "upload": "Upload photo",
+      "takePhoto": "Use camera",
+      "previewAlt": "Selected ingredient photo",
+      "remove": "Remove photo"
+    },
+    "barcode": {
+      "title": "Barcode scan",
+      "subtitle": "Scan up to {max} barcodes and add them to your results.",
+      "scanButton": "Scan",
+      "count": "{count} / {max}",
+      "maxReached": "You reached the maximum of {max} barcodes.",
+      "itemLabel": "Barcode",
+      "remove": "Remove barcode",
+      "scanner": {
+        "title": "Scan barcode",
+        "ready": "Point your camera at the barcode.",
+        "starting": "Starting camera...",
+        "scanning": "Scanning...",
+        "unsupported": "Camera scanning is not supported on this device. Use manual entry below.",
+        "denied": "Camera permission was denied. Use manual entry below.",
+        "error": "Scanner error. Use manual entry below.",
+        "scanMore": "Scan more",
+        "troubleshootTitle": "Troubleshooting",
+        "troubleshootBody": "Try allowing camera access, switching browsers, or use manual entry."
+      },
+      "manual": {
+        "title": "Manual entry",
+        "subtitle": "If camera scanning doesn’t work, enter the barcode here.",
+        "placeholder": "e.g. 6281000000000",
+        "add": "Add"
+      }
+    },
+    "text": {
+      "title": "Type ingredients",
+      "subtitle": "Write ingredients separated by commas or new lines.",
+      "placeholder": "e.g.\nTomatoes\nOnion, Garlic\nChicken"
+    },
+    "results": {
+      "title": "Insert missing ingredients",
+      "subtitle": "Add ingredients you might be missing, then remove any item you don’t want.",
+      "addMore": "+ Add missing",
+      "empty": "No ingredients yet. Add missing ingredients to build your list.",
+      "remove": "Remove item"
+    },
+    "missing": {
+      "modalTitle": "Add missing ingredient",
+      "modalSubtitle": "Type one ingredient, then submit. You can add multiple items.",
+      "placeholder": "e.g. Onion",
+      "submit": "Add"
+    },
+    "draft": {
+      "photoItem": "Photo (ingredient image)",
+      "barcodePrefix": "Barcode"
+    },
+    "common": {
+      "close": "Close",
+      "done": "Done"
+    }
+  },
+
   "feedback": {
     "title": "Share Your Feedback",
     "subtitle": "Your notes help us make FoodAI better for everyone",

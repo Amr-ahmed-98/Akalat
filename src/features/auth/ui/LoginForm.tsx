@@ -4,7 +4,7 @@ import Link from "next/link";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useMemo, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -40,8 +40,19 @@ export function LoginForm() {
   const tValidation = useTranslations("Auth.validation");
   const locale = useLocale();
   const router = useRouter();
+  const searchParams = useSearchParams();
   const [showPassword, setShowPassword] = useState(false);
   const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
+
+  const postLoginDestination = useMemo(() => {
+    const next = searchParams.get("next");
+
+    if (!next || !next.startsWith("/")) {
+      return `/${locale}`;
+    }
+
+    return next;
+  }, [locale, searchParams]);
 
   const schema = useMemo(() => createLoginSchema(tValidation), [tValidation]);
 
@@ -62,7 +73,7 @@ export function LoginForm() {
     try {
       await loginUser(data);
       clearRegisterFlowState();
-      router.replace(`/${locale}`);
+      router.replace(postLoginDestination);
     } catch (error) {
       toast.error(getApiErrorMessage(error, t("fallbackError")));
     }
@@ -85,7 +96,7 @@ export function LoginForm() {
 
       if (isProfileComplete) {
         clearRegisterFlowState();
-        router.replace(`/${locale}`);
+        router.replace(postLoginDestination);
         return;
       }
 

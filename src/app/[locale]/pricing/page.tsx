@@ -5,14 +5,15 @@ import { ProFeaturesSection } from "@/src/widgets/pro-features/ui/ProFeaturesSec
 import { getTranslations } from "next-intl/server";
 
 type PricingPageProps = {
-  params: {
+  params: Promise<{
     locale: string;
-  };
+  }>;
 };
 
 export async function generateMetadata({ params }: PricingPageProps) {
+  const { locale } = await params;
   const t = await getTranslations({
-    locale: params.locale,
+    locale,
     namespace: "PricingPage",
   });
 
