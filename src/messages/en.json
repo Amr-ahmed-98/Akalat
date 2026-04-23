@@ -581,6 +581,10 @@
     "title": "Pricing - Akalat",
     "description": "Choose the perfect plan for your needs. All plans include a 14-day money-back guarantee."
   },
+  "ExplorePage": {
+    "title": "Explore - Akalat",
+    "description": "Discover new recipes and features tailored to your taste."
+  },
 
   "feedback": {
     "title": "Share Your Feedback",
