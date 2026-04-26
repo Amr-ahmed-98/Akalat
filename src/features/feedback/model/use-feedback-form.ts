@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { isAxiosError } from "axios";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 import { useTranslations } from "next-intl";
+import { api } from "@/src/shared/lib/axios";
+import { getApiErrorMessage } from "@/src/features/auth/model/auth-api";
+import { getAuthenticatedUser } from "@/src/features/auth/model/auth-sessions";
+import type { SuccessEnvelope } from "@/src/features/auth/model/types";
 import {
   feedbackSchema,
   type FeedbackFormValues,
@@ -57,22 +62,89 @@ export const useFeedbackForm = () => {
     handleFileChange(null);
   };
 
+  const fileToBinaryString = async (file: File): Promise<string> => {
+    const buffer = await file.arrayBuffer();
+    let binary = "";
+    const bytes = new Uint8Array(buffer);
+    const chunkSize = 0x8000;
+
+    for (let i = 0; i < bytes.length; i += chunkSize) {
+      const chunk = bytes.subarray(i, i + chunkSize);
+      binary += String.fromCharCode(...chunk);
+    }
+
+    return btoa(binary);
+  };
+
   const onSubmit = async (values: FeedbackFormValues) => {
     try {
-      // Replace this with your actual API call
-      // e.g. await submitFeedback(values);
-      console.log("Feedback submitted:", values);
+      const currentUser = getAuthenticatedUser();
+      const requiredPayload: {
+        type: string;
+        priority: string;
+        details: string;
+        screenshot?: string;
+      } = {
+        type: values.type,
+        priority: values.importance,
+        details: values.details,
+      };
 
-      toast.success(t("feedback.toast.success"), {
-        description: t("feedback.toast.successDescription"),
-      });
+      const payloadWithOptional: {
+        type: string;
+        priority: string;
+        details: string;
+        senderName?: string;
+        senderEmail?: string;
+        screenshot?: string;
+      } = {
+        type: values.type,
+        priority: values.importance,
+        details: values.details,
+      };
+
+      if (currentUser?.name) {
+        payloadWithOptional.senderName = currentUser.name;
+      }
+
+      if (currentUser?.email) {
+        payloadWithOptional.senderEmail = currentUser.email;
+      }
+
+      if (values.screenshot) {
+        const screenshotBinary = await fileToBinaryString(values.screenshot);
+        payloadWithOptional.screenshot = screenshotBinary;
+        requiredPayload.screenshot = screenshotBinary;
+      }
+
+      let response;
+
+      try {
+        response = await api.post<SuccessEnvelope<{ message?: string }>>(
+          "/api/contact/messages",
+          payloadWithOptional,
+        );
+      } catch (error) {
+        // Some backends strictly validate optional fields (e.g. senderName format).
+        // Retry with required-only payload to avoid rejecting valid feedback.
+        if (!isAxiosError(error) || error.response?.status !== 400) {
+          throw error;
+        }
+
+        response = await api.post<SuccessEnvelope<{ message?: string }>>(
+          "/api/contact/messages",
+          requiredPayload,
+        );
+      }
+
+      const message = response.data.data.message || t("feedback.toast.success");
+
+      toast.success(message);
 
       form.reset();
       removeFile();
-    } catch {
-      toast.error(t("feedback.toast.error"), {
-        description: t("feedback.toast.errorDescription"),
-      });
+    } catch (error) {
+      toast.error(getApiErrorMessage(error, t("feedback.toast.errorDescription")));
     }
   };
 
