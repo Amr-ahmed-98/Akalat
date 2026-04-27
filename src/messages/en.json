@@ -583,7 +583,101 @@
   },
   "ExplorePage": {
     "title": "Explore - Akalat",
-    "description": "Discover new recipes and features tailored to your taste."
+    "description": "Discover new recipes and features tailored to your taste.",
+    "hero": {
+      "fallbackName": "Chef",
+      "greetingWithName": "Welcome back, {name}. What do you have in your kitchen today?"
+    },
+    "smartVision": {
+      "title": "Smart vision",
+      "badge": "AI assistant",
+      "headline": "You can reduce food waste in two days.",
+      "description": "Track expiring ingredients and use them in recipes before they go bad.",
+      "stats": {
+        "recipes": { "value": "12", "label": "Suggested meals" },
+        "expiring": { "value": "4", "label": "Expiring items" }
+      }
+    },
+    "quickProcedures": {
+      "title": "Quick procedures",
+      "items": {
+        "scan": "Scan ingredients",
+        "manualAdd": "Manual add",
+        "savedRecipes": "Saved recipes",
+        "myInventory": "My inventory"
+      }
+    },
+    "currentInventory": {
+      "title": "Current inventory",
+      "readOnlyBadge": "Read only",
+      "description": "Sample ingredients for now. This list will be fetched from your inventory endpoint later.",
+      "sampleIngredients": {
+        "avocado": "Avocado",
+        "tomatoes": "Cherry tomatoes",
+        "spinach": "Spinach",
+        "pepper": "Red pepper",
+        "garlic": "Garlic",
+        "garlicPowder": "Garlic powder"
+      }
+    },
+    "searchFilters": {
+      "searchPlaceholder": "Search for any meal .....",
+      "openFiltersButton": "Filter results",
+      "selectedFiltersTitle": "Applied filters",
+      "popupTitle": "Smart and advanced filtering",
+      "smartFiltersTitle": "Smart filters",
+      "basicFiltersTitle": "Basic filters",
+      "healthFiltersTitle": "Health filters",
+      "occasionFiltersTitle": "Occasion filters",
+      "aiPowered": "AI powered",
+      "applyWithCount": "Apply filters ({count})",
+      "reset": "Reset",
+      "close": "Close",
+      "groups": {
+        "time": "Time",
+        "desire": "Desire",
+        "mood": "Mood",
+        "kitchen": "Cuisine",
+        "mealType": "Meal type",
+        "dishType": "Dish type"
+      },
+      "options": {
+        "quickMeal": "Quick meal",
+        "under20Min": "Under 20 min",
+        "budget": "On budget",
+        "savesTime": "Saves time",
+        "savoury": "Savoury",
+        "sweet": "Sweet",
+        "light": "Light",
+        "spicy": "Spicy",
+        "healthy": "Healthy",
+        "comfort": "Comfort food",
+        "crispy": "Crispy",
+        "fullMeal": "Full meal",
+        "italian": "Italian",
+        "egyptian": "Egyptian",
+        "japanese": "Japanese",
+        "mexican": "Mexican",
+        "indian": "Indian",
+        "breakfast": "Breakfast",
+        "lunch": "Lunch",
+        "dinner": "Dinner",
+        "snack": "Snack",
+        "dessert": "Dessert",
+        "pasta": "Pasta",
+        "seafood": "Seafood",
+        "soup": "Soup",
+        "salad": "Salad",
+        "pizza": "Pizza",
+        "keto": "Keto",
+        "vegan": "Vegan",
+        "highProtein": "High protein",
+        "lowCalorie": "Low calorie",
+        "familyDinner": "Family dinner",
+        "romanticDinner": "Romantic dinner",
+        "healthyMealPrep": "Healthy meal prep"
+      }
+    }
   },
 
   "IngredientScannerPage": {

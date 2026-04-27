@@ -584,7 +584,101 @@
   },
   "ExplorePage": {
     "title": "اكتشاف - اكلات",
-    "description": "اكتشف وصفات وخصائص جديدة مخصصة لذوقك."
+    "description": "اكتشف وصفات وخصائص جديدة مخصصة لذوقك.",
+    "hero": {
+      "fallbackName": "الشيف",
+      "greetingWithName": "مرحباً بعودتك يا {name}. ماذا يوجد في مطبخك اليوم؟"
+    },
+    "smartVision": {
+      "title": "رؤى ذكية",
+      "badge": "مساعدة الذكاء الاصطناعي",
+      "headline": "تقدر تقلل هدر الطعام خلال يومين.",
+      "description": "تابع العناصر القريبة من الانتهاء واستخدمها في وصفات مناسبة قبل انتهاء صلاحيتها.",
+      "stats": {
+        "recipes": { "value": "12", "label": "وجبة مقترحة" },
+        "expiring": { "value": "4", "label": "عناصر منتهية" }
+      }
+    },
+    "quickProcedures": {
+      "title": "إجراءات سريعة",
+      "items": {
+        "scan": "مسح المكونات",
+        "manualAdd": "إضافة يدوية",
+        "savedRecipes": "الوصفات المحفوظة",
+        "myInventory": "المخزون الحالي"
+      }
+    },
+    "currentInventory": {
+      "title": "المخزون الحالي",
+      "readOnlyBadge": "للقراءة فقط",
+      "description": "هذه مكونات تجريبية حالياً، وسيتم جلبها لاحقاً من واجهة المخزون.",
+      "sampleIngredients": {
+        "avocado": "أفوكادو",
+        "tomatoes": "طماطم كرزية",
+        "spinach": "سبانخ",
+        "pepper": "فلفل أحمر",
+        "garlic": "ثوم",
+        "garlicPowder": "بودرة ثوم"
+      }
+    },
+    "searchFilters": {
+      "searchPlaceholder": "ابحث عن اى وجبه .....",
+      "openFiltersButton": "تصفية النتائج",
+      "selectedFiltersTitle": "الفلاتر المطبقة",
+      "popupTitle": "التصفية الذكية والمتقدمة",
+      "smartFiltersTitle": "الفلاتر الذكية",
+      "basicFiltersTitle": "الفلاتر الأساسية",
+      "healthFiltersTitle": "الفلاتر الصحية",
+      "occasionFiltersTitle": "فلاتر المناسبات",
+      "aiPowered": "AI Powered",
+      "applyWithCount": "تطبيق الفلاتر ({count})",
+      "reset": "إعادة تعيين",
+      "close": "إغلاق",
+      "groups": {
+        "time": "الوقت",
+        "desire": "الرغبة",
+        "mood": "المزاج",
+        "kitchen": "المطبخ",
+        "mealType": "نوع الوجبة",
+        "dishType": "نوع الطبق"
+      },
+      "options": {
+        "quickMeal": "وجبة سريعة",
+        "under20Min": "اقل من 20 دقيقه",
+        "budget": "بناء على ميزانية",
+        "savesTime": "توفر وقت",
+        "savoury": "مالح",
+        "sweet": "حلو",
+        "light": "خفيف",
+        "spicy": "حار",
+        "healthy": "صحي",
+        "comfort": "مريح",
+        "crispy": "مقرمش",
+        "fullMeal": "مشبع",
+        "italian": "إيطالي",
+        "egyptian": "مصري",
+        "japanese": "ياباني",
+        "mexican": "مكسيكي",
+        "indian": "هندي",
+        "breakfast": "فطور",
+        "lunch": "غداء",
+        "dinner": "عشاء",
+        "snack": "سناك",
+        "dessert": "تحلية",
+        "pasta": "باستا",
+        "seafood": "بحر",
+        "soup": "شوربة",
+        "salad": "سلطة",
+        "pizza": "بيتزا",
+        "keto": "كيتو",
+        "vegan": "نباتي",
+        "highProtein": "عالي البروتين",
+        "lowCalorie": "قليل من السعرات",
+        "familyDinner": "عشاء عائلي",
+        "romanticDinner": "عشاء رومانسي",
+        "healthyMealPrep": "وجبة عمل صحية"
+      }
+    }
   },
 
   "IngredientScannerPage": {
