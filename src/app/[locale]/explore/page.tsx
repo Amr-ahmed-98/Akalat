@@ -1,9 +1,7 @@
 import { AppLayout } from "@/src/layouts/app-layout";
 import { getTranslations } from "next-intl/server";
 
-import { RequireAuth } from "@/src/features/auth/ui/RequireAuth";
-import { ExploreWelcomeCard } from "@/src/widgets/explore/ui/ExploreWelcomeCard";
-import { ExploreOverviewSection } from "@/src/widgets/explore-overview/ui/ExploreOverviewSection";
+import { ExploreViewByAuth } from "@/src/widgets/explore/ui/ExploreViewByAuth";
 
 type ExplorePageProps = {
   params: Promise<{
@@ -29,10 +27,7 @@ export default async function ExplorePage({ params }: ExplorePageProps) {
   return (
     <main className="min-h-screen bg-background">
       <AppLayout locale={locale}>
-        <RequireAuth locale={locale}>
-          <ExploreWelcomeCard />
-          <ExploreOverviewSection />
-        </RequireAuth>
+        <ExploreViewByAuth />
       </AppLayout>
     </main>
   );
