@@ -91,7 +91,7 @@
       "emailLabel": "Email address",
       "emailPlaceholder": "example@wajbaAi.com",
       "passwordLabel": "Password",
-      "passwordPlaceholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+      "passwordPlaceholder": "••••••••",
       "forgotPassword": "Forgot password?",
       "submit": "Login",
       "loading": "Logging in...",
@@ -123,13 +123,13 @@
         "email": { "label": "Email address", "placeholder": "alex@wajbaAi.com" },
         "password": {
           "label": "Password",
-          "placeholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+          "placeholder": "••••••••",
           "show": "Show password",
           "hide": "Hide password"
         },
         "confirmPassword": {
           "label": "Confirm password",
-          "placeholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+          "placeholder": "••••••••",
           "show": "Show confirm password",
           "hide": "Hide confirm password"
         }
@@ -267,9 +267,9 @@
       "title": "Reset your password",
       "description": "Choose a strong new password for your account.",
       "passwordLabel": "New password",
-      "passwordPlaceholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+      "passwordPlaceholder": "••••••••",
       "confirmPasswordLabel": "Confirm password",
-      "confirmPasswordPlaceholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
+      "confirmPasswordPlaceholder": "••••••••",
       "submit": "Confirm reset",
       "loading": "Saving...",
       "footerText": "Already fixed it?",
