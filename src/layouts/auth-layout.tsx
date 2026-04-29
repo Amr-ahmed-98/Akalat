@@ -37,7 +37,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
         <div className="absolute inset-0 bg-linear-to-t from-black/65 via-black/25 to-black/35" />
 
         <div className="absolute inset-x-0 top-0 z-10 flex items-center justify-between p-4 sm:p-6 lg:hidden">
-          <BrandLogo tone="light" />
+          <BrandLogo tone="light" locale={locale} />
           <LanguageSwitcher />
         </div>
 
@@ -67,7 +67,7 @@ export async function AuthLayout({ children, locale }: AuthLayoutProps) {
 
         <div className="relative z-10 hidden h-full flex-col p-8 text-white lg:flex xl:p-10">
           <div className="flex items-center justify-between gap-6">
-            <BrandLogo tone="light" />
+            <BrandLogo tone="light" locale={locale} />
             <LanguageSwitcher />
           </div>
 

@@ -56,7 +56,7 @@ export default async function Footer({ locale }: FooterProps) {
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-3 lg:grid-cols-5">
           {/* Brand column */}
           <div className="col-span-2 flex flex-col items-center sm:col-span-3 sm:items-start lg:col-span-1 ">
-            <BrandLogo tone="light" />
+            <BrandLogo tone="light" locale={locale === "ar" ? "ar" : "en"} />
 
             <p className="mt-4 max-w-[18rem] text-center text-sm leading-7 text-white/65 sm:text-left">
               {t("tagline")}

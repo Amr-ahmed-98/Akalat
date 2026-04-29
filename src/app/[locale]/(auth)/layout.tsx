@@ -12,11 +12,11 @@ type AuthRouteLayoutProps = {
 const metadataByLocale: Record<Locale, Metadata> = {
   ar: {
     title: "بوابات الحساب",
-    description: "تسجيل الدخول وإنشاء الحساب واستعادة كلمة المرور في أكالات.",
+    description: "تسجيل الدخول وإنشاء الحساب واستعادة كلمة المرور في وجبه AI.",
   },
   en: {
     title: "Account access",
-    description: "Login, register and recover your Akalat account.",
+    description: "Login, register and recover your wajbaAi account.",
   },
 };
 

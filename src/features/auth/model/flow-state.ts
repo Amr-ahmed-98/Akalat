@@ -1,4 +1,4 @@
-import type { AuthProvider } from "./types";
+﻿import type { AuthProvider } from "./types";
 
 export type RegisterStep = 1 | 2 | 3;
 export type OtpFlowMode = "verify-email" | "forgot-password";
@@ -29,9 +29,9 @@ export type PasswordResetFlowState = {
   updatedAt: number;
 };
 
-const REGISTER_FLOW_KEY = "akalat.auth.register-flow";
-const OTP_FLOW_KEY = "akalat.auth.otp-flow";
-const PASSWORD_RESET_FLOW_KEY = "akalat.auth.password-reset-flow";
+const REGISTER_FLOW_KEY = "wajbaAi.auth.register-flow";
+const OTP_FLOW_KEY = "wajbaAi.auth.otp-flow";
+const PASSWORD_RESET_FLOW_KEY = "wajbaAi.auth.password-reset-flow";
 
 const REGISTER_FLOW_TTL = 24 * 60 * 60 * 1000;
 const OTP_FLOW_TTL = 30 * 60 * 1000;
@@ -281,3 +281,4 @@ export function mapBackendOnboardingStepToRegisterStep(
 
   return 2;
 }
+

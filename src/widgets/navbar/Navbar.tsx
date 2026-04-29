@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
@@ -67,17 +67,17 @@ export default function Navbar() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const notificationsRef = useRef<HTMLDivElement>(null);
 
-  /* ── sync auth state ── */
+  /* â”€â”€ sync auth state â”€â”€ */
   useEffect(() => {
     setUser(getAuthenticatedUser());
 
     const syncUser = () => setUser(getAuthenticatedUser());
-    window.addEventListener("akalat:auth-session-changed", syncUser);
+    window.addEventListener("wajbaAi:auth-session-changed", syncUser);
     return () =>
-      window.removeEventListener("akalat:auth-session-changed", syncUser);
+      window.removeEventListener("wajbaAi:auth-session-changed", syncUser);
   }, []);
 
-  /* ── close popovers on outside click ── */
+  /* â”€â”€ close popovers on outside click â”€â”€ */
   useEffect(() => {
     const handleOutside = (e: MouseEvent) => {
       if (
@@ -97,7 +97,7 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handleOutside);
   }, []);
 
-  /* ── close mobile menu on route change ── */
+  /* â”€â”€ close mobile menu on route change â”€â”€ */
   useEffect(() => {
     setIsMenuOpen(false);
   }, [pathname]);
@@ -129,12 +129,12 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-card/95 shadow-sm backdrop-blur-sm">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-        {/* ── Logo ── */}
+        {/* â”€â”€ Logo â”€â”€ */}
         <Link href={`/${locale}`} className="shrink-0">
-          <BrandLogo />
+          <BrandLogo locale={locale === "ar" ? "ar" : "en"} />
         </Link>
 
-        {/* ── Desktop nav ── */}
+        {/* â”€â”€ Desktop nav â”€â”€ */}
         <nav className="hidden flex-1 items-center justify-center gap-1 md:flex">
           {NAV_LINKS.map(({ key, href }) => (
             <Link
@@ -155,7 +155,7 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* ── Desktop right section ── */}
+        {/* â”€â”€ Desktop right section â”€â”€ */}
         <div className="hidden shrink-0 items-center gap-2 md:flex">
           <div className="relative" ref={notificationsRef}>
             <button
@@ -249,7 +249,7 @@ export default function Navbar() {
           )}
         </div>
 
-        {/* ── Mobile hamburger ── */}
+        {/* â”€â”€ Mobile hamburger â”€â”€ */}
         <div className="flex items-center gap-2 md:hidden">
           <button
             type="button"
@@ -297,7 +297,7 @@ export default function Navbar() {
         </>
       ) : null}
 
-      {/* ── Mobile menu ── */}
+      {/* â”€â”€ Mobile menu â”€â”€ */}
       {isMenuOpen && (
         <div className="border-t border-border bg-card px-4 pb-5 pt-3 md:hidden">
           {/* Nav links */}
@@ -387,3 +387,4 @@ export default function Navbar() {
     </header>
   );
 }
+

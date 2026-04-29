@@ -66,8 +66,8 @@
       "verified": "Verified account",
       "awards": "Awards"
     },
-    "copyrightPrefix": "© 2026",
-    "copyrightBrand": "Akalat",
+    "copyrightPrefix": "Â© 2026",
+    "copyrightBrand": "wajbaAi",
     "copyrightSuffix": ". The art of digital cooking."
   },
   "Auth": {
@@ -89,9 +89,9 @@
       "title": "Login to your account",
       "description": "Sign in to continue your AI cooking experience.",
       "emailLabel": "Email address",
-      "emailPlaceholder": "example@foodai.com",
+      "emailPlaceholder": "example@wajbaAi.com",
       "passwordLabel": "Password",
-      "passwordPlaceholder": "••••••••",
+      "passwordPlaceholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
       "forgotPassword": "Forgot password?",
       "submit": "Login",
       "loading": "Logging in...",
@@ -120,16 +120,16 @@
       "footer": { "haveAccount": "Already have an account?", "login": "Login" },
       "fields": {
         "name": { "label": "Full name", "placeholder": "Alex Chef" },
-        "email": { "label": "Email address", "placeholder": "alex@foodai.com" },
+        "email": { "label": "Email address", "placeholder": "alex@wajbaAi.com" },
         "password": {
           "label": "Password",
-          "placeholder": "••••••••",
+          "placeholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
           "show": "Show password",
           "hide": "Hide password"
         },
         "confirmPassword": {
           "label": "Confirm password",
-          "placeholder": "••••••••",
+          "placeholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
           "show": "Show confirm password",
           "hide": "Hide confirm password"
         }
@@ -158,7 +158,7 @@
         },
         "cuisines": {
           "title": "Favorite cuisines",
-          "description": "Pick the cuisines you want Akalat to prioritize."
+          "description": "Pick the cuisines you want wajbaAi to prioritize."
         },
         "allergies": {
           "title": "Allergies",
@@ -240,7 +240,7 @@
       "title": "Forgot your password?",
       "description": "Enter your email and we'll start the password reset flow.",
       "emailLabel": "Email address",
-      "emailPlaceholder": "example@foodai.com",
+      "emailPlaceholder": "example@wajbaAi.com",
       "submit": "Continue",
       "loading": "Sending...",
       "backToLogin": "Back to login",
@@ -267,9 +267,9 @@
       "title": "Reset your password",
       "description": "Choose a strong new password for your account.",
       "passwordLabel": "New password",
-      "passwordPlaceholder": "••••••••",
+      "passwordPlaceholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
       "confirmPasswordLabel": "Confirm password",
-      "confirmPasswordPlaceholder": "••••••••",
+      "confirmPasswordPlaceholder": "â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢",
       "submit": "Confirm reset",
       "loading": "Saving...",
       "footerText": "Already fixed it?",
@@ -375,12 +375,12 @@
       },
       "personalized": {
         "title": "Personalized Cooking",
-        "description": "FoodAI learns your tastes and preferences over time — whether you're vegan, gluten-free, keto, or any other diet."
+        "description": "wajbaAi learns your tastes and preferences over time â€” whether you're vegan, gluten-free, keto, or any other diet."
       }
     },
     "stats": {
       "title": "Hi: Sustainable",
-      "description": "FoodAI users reduce household food waste by an average of 34% in the first month."
+      "description": "wajbaAi users reduce household food waste by an average of 34% in the first month."
     }
   },
 
@@ -389,21 +389,21 @@
       "first": "This is what",
       "highlight": "our creators say."
     },
-    "description": "Join over 50,000 home cooks using FoodAI for revolutionary creations in their kitchens.",
+    "description": "Join over 50,000 home cooks using wajbaAi for revolutionary creations in their kitchens.",
     "stats": {
       "joined": "+50,000 users",
-      "desc": "trust FoodAI daily"
+      "desc": "trust wajbaAi daily"
     },
     "testimonials": [
       {
         "name": "Marcus Norton",
         "role": "Developer & Influencer / Cook",
-        "content": "The alternatives editor is a real lifesaver. Being vegan in a small town is tough, but FoodAI always knows how to adapt any recipe for me."
+        "content": "The alternatives editor is a real lifesaver. Being vegan in a small town is tough, but wajbaAi always knows how to adapt any recipe for me."
       },
       {
         "name": "Sarah Jenkins",
         "role": "Home Cook since 2021",
-        "content": "FoodAI has literally changed my relationship with cooking. I used to spend hours figuring out what to cook, now I just open the fridge and let AI guide me."
+        "content": "wajbaAi has literally changed my relationship with cooking. I used to spend hours figuring out what to cook, now I just open the fridge and let AI guide me."
       }
     ]
   },
@@ -427,7 +427,7 @@
       "reports": {
         "title": "Advanced Nutrition Reports",
         "description": "Charts showing your consumption of macros, vitamins, and minerals with instant tips to improve your health.",
-        "badge": "View sample reports ←"
+        "badge": "View sample reports â†"
       },
       "planning": {
         "title": "Weekly Planning",
@@ -440,7 +440,7 @@
     "header": {
       "badge": "Premium Subscriptions",
       "first": "Invest in Your Health with",
-      "highlight": "Akalat",
+      "highlight": "wajbaAi",
       "description": "Flexible plans designed to fit your lifestyle. Start for free today or elevate your experience with advanced AI features."
     },
     "toggle": {
@@ -574,15 +574,15 @@
   },
 
   "ContactPage": {
-    "title": "Contact Us - Akalat",
+    "title": "Contact Us - wajbaAi",
     "description": "We're here to help. Find answers to common questions or contact our support team directly."
   },
   "PricingPage": {
-    "title": "Pricing - Akalat",
+    "title": "Pricing - wajbaAi",
     "description": "Choose the perfect plan for your needs. All plans include a 14-day money-back guarantee."
   },
   "ExplorePage": {
-    "title": "Explore - Akalat",
+    "title": "Explore - wajbaAi",
     "description": "Discover new recipes and features tailored to your taste.",
     "hero": {
       "fallbackName": "Chef",
@@ -682,7 +682,7 @@
 
   "IngredientScannerPage": {
     "meta": {
-      "title": "Scan ingredients - Akalat",
+      "title": "Scan ingredients - wajbaAi",
       "description": "Scan ingredients using camera, barcodes, or text."
     },
     "title": "Ingredients Scanner",
@@ -733,7 +733,7 @@
       },
       "manual": {
         "title": "Manual entry",
-        "subtitle": "If camera scanning doesn’t work, enter the barcode here.",
+        "subtitle": "If camera scanning doesnâ€™t work, enter the barcode here.",
         "placeholder": "e.g. 6281000000000",
         "add": "Add"
       }
@@ -745,7 +745,7 @@
     },
     "results": {
       "title": "Insert missing ingredients",
-      "subtitle": "Add ingredients you might be missing, then remove any item you don’t want.",
+      "subtitle": "Add ingredients you might be missing, then remove any item you donâ€™t want.",
       "addMore": "+ Add missing",
       "empty": "No ingredients yet. Add missing ingredients to build your list.",
       "remove": "Remove item"
@@ -768,7 +768,7 @@
 
   "feedback": {
     "title": "Share Your Feedback",
-    "subtitle": "Your notes help us make FoodAI better for everyone",
+    "subtitle": "Your notes help us make wajbaAi better for everyone",
     "fields": {
       "type": {
         "label": "Observation Type",
@@ -822,3 +822,4 @@
     }
   }
 }
+

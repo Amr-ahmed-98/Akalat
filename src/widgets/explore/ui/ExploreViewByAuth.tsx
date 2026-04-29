@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useSyncExternalStore } from "react";
 
@@ -14,9 +14,9 @@ function subscribeToAuthChanges(onStoreChange: () => void) {
     return () => undefined;
   }
 
-  window.addEventListener("akalat:auth-session-changed", onStoreChange);
+  window.addEventListener("wajbaAi:auth-session-changed", onStoreChange);
   return () =>
-    window.removeEventListener("akalat:auth-session-changed", onStoreChange);
+    window.removeEventListener("wajbaAi:auth-session-changed", onStoreChange);
 }
 
 function getAuthSnapshot(): boolean {
@@ -54,3 +54,4 @@ export function ExploreViewByAuth() {
 
   return <ExploreGuestView />;
 }
+

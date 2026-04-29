@@ -1,11 +1,11 @@
-import {
+﻿import {
   getClientCookie,
   removeClientCookie,
   setClientCookie,
 } from "@/src/shared/lib/cookies/client-cookies";
 import type { AuthPayload, AuthTokens, PublicUser } from "./types";
 
-const ACCESS_TOKEN_COOKIE_KEY = "akalat.access-token";
+const ACCESS_TOKEN_COOKIE_KEY = "wajbaAi.access-token";
 const DEFAULT_ACCESS_TOKEN_EXPIRY_IN_DAYS = 15 / (24 * 60);
 
 let memoryRefreshToken: string | null = null;
@@ -17,7 +17,7 @@ function emitAuthChange(): void {
     return;
   }
 
-  window.dispatchEvent(new CustomEvent("akalat:auth-session-changed"));
+  window.dispatchEvent(new CustomEvent("wajbaAi:auth-session-changed"));
 }
 
 function durationToCookieDays(value: string | undefined): number {
@@ -101,3 +101,4 @@ export function clearAuthSession(): void {
   authBootstrapStatus = "ready";
   emitAuthChange();
 }
+

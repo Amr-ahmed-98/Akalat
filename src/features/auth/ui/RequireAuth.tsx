@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useSyncExternalStore } from "react";
 import { useLocale } from "next-intl";
@@ -19,9 +19,9 @@ function subscribeToAuthChanges(onStoreChange: () => void) {
     return () => undefined;
   }
 
-  window.addEventListener("akalat:auth-session-changed", onStoreChange);
+  window.addEventListener("wajbaAi:auth-session-changed", onStoreChange);
   return () =>
-    window.removeEventListener("akalat:auth-session-changed", onStoreChange);
+    window.removeEventListener("wajbaAi:auth-session-changed", onStoreChange);
 }
 
 function getAuthSnapshot(): boolean {
@@ -72,3 +72,4 @@ export function RequireAuth({ children, locale }: RequireAuthProps) {
 
   return <>{children}</>;
 }
+

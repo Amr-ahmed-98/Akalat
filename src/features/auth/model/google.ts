@@ -1,4 +1,4 @@
-export type GoogleCredentialResponse = {
+﻿export type GoogleCredentialResponse = {
   credential: string;
   select_by: string;
   clientId?: string;
@@ -39,11 +39,11 @@ declare global {
         };
       };
     };
-    __akalatGoogleInitialized?: boolean;
+    __wajbaAiGoogleInitialized?: boolean;
   }
 }
 
-const GOOGLE_SCRIPT_ID = "akalat-google-identity-script";
+const GOOGLE_SCRIPT_ID = "wajbaAi-google-identity-script";
 let googleScriptPromise: Promise<void> | null = null;
 let activeGoogleCredentialHandler: GoogleCredentialHandler = null;
 
@@ -110,7 +110,7 @@ export function initializeGoogleIdentity(options?: { locale?: string }): void {
     throw new Error("Missing NEXT_PUBLIC_GOOGLE_CLIENT_ID.");
   }
 
-  if (window.__akalatGoogleInitialized) {
+  if (window.__wajbaAiGoogleInitialized) {
     return;
   }
 
@@ -124,7 +124,7 @@ export function initializeGoogleIdentity(options?: { locale?: string }): void {
     cancel_on_tap_outside: true,
   });
 
-  window.__akalatGoogleInitialized = true;
+  window.__wajbaAiGoogleInitialized = true;
 }
 
 export function renderGoogleIdentityButton(input: {
@@ -177,3 +177,4 @@ export function disableGoogleAutoSelect(): void {
 
   window.google?.accounts?.id?.disableAutoSelect?.();
 }
+

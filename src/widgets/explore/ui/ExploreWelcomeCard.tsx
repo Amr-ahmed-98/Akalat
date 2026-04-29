@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 
 import { useEffect, useMemo, useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
@@ -11,9 +11,9 @@ function subscribeToAuthChanges(onStoreChange: () => void): () => void {
     return () => undefined;
   }
 
-  window.addEventListener("akalat:auth-session-changed", onStoreChange);
+  window.addEventListener("wajbaAi:auth-session-changed", onStoreChange);
   return () =>
-    window.removeEventListener("akalat:auth-session-changed", onStoreChange);
+    window.removeEventListener("wajbaAi:auth-session-changed", onStoreChange);
 }
 
 function getAuthUserSnapshot() {
@@ -71,3 +71,4 @@ export function ExploreWelcomeCard() {
     </section>
   );
 }
+

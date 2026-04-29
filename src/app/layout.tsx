@@ -17,8 +17,8 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
   title: {
-    default: "Akalat",
-    template: "%s | Akalat",
+    default: "wajbaAi",
+    template: "%s | wajbaAi",
   },
   description:
     "AI-powered cooking experience with multilingual authentication and onboarding.",
